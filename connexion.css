@@ -1,0 +1,37 @@
+h2, h3 
+{
+	color : white;
+	position: center ;
+}
+
+
+
+.Section1
+{
+	position: absolute; top : 134px; right: 670px;
+	background: #AD031A;
+	border: 1px solid #AD031A;
+	width: 600px;
+	text-align: center;
+	font-size: 13px;`
+}
+
+.Section2 
+{
+	margin-left: 630px;
+	background: #AD031A;
+	border: 1px solid #AD031A;
+	width: 630px;
+	text-align: center ;
+	font-size: 13px;
+}
+
+p
+{
+	color : black;
+}
+
+em
+{
+	color : red;
+}
