@@ -18,7 +18,7 @@
 			<h2> Connexion </h2>
 			<!--</br></br></br></br>-->
 			<h3> E-mail : </h3>
-				<input type="text" name="e-mail" size="40" required style=" height : 30px;" >
+				<input type="text" name="e-mail" required style=" height : 30px; width: 50%;" >
 			<h3> Mot de passe </h3>
 				<input type="password" name="mot de passe" size="40" required style=" height : 30px;"> </br></br>
 				<button style=" size : 40px;height : 40px;" href ="Gérer son compte.html"> Connexion </button> </br> </br>
@@ -28,16 +28,16 @@
 		<div class = "Section2"> 
 			<h2> S'inscrire </h2>
 			<h3> Identifiant : </h3>
-				<input type="text" name="prénom" size="40" required style=" height : 5%;" >
+				<input type="text" name="prénom" required style=" height : 5%; width: 50%;" >
 			 		</br>
 			 <h3> E-mail : </h3>
-			 	<input type="text" name="e-mail" size="40" required style=" height : 5%;" >
+			 	<input type="text" name="e-mail" required style=" height : 5%; width: 50%;" >
 			 		</br>
 			 <h3> Mot de passe : </h3>
-			 	<input type="password" name="mdp" size="40" required style=" height : 5%;" >
+			 	<input type="password" name="mdp" required style=" height : 5%; width: 50%;" >
 			 		</br>
 			 <h3> Confirmation mot de passe : </h3>
-			 	<input type="password" name="confirmation" size="40" required style=" height : 5%;" > </br></br>
+			 	<input type="password" name="confirmation" required style=" height : 5%; width: 50%;" > </br></br>
 			 <input type ="checkbox" id ="CGU" unchecked>
 			 <label for ="CGU" class = "cgu"> J'accepte les conditions d'utilisations et les mentions légales </label> </br> 
 			 <button style="size : 40px; height: 40px;">Confirmer </button>  </br>
