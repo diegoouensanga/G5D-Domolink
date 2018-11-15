@@ -22,7 +22,7 @@
 			<h3> Mot de passe </h3>
 				<input type="password" name="mot de passe" size="40" required style=" height : 30px;"> </br></br>
 				<button style=" size : 40px;height : 40px;" href ="Gérer son compte.html"> Connexion </button> </br> </br>
-			<a class = "oublié" href ="Oublié.html"> Mot de passe oublié </a> 
+			<a class = "textBlanc" href ="Oublié.html"> Mot de passe oublié </a> 
 			</div> 
 		</div> 
 		<div class = "Section2"> 
@@ -39,7 +39,7 @@
 			 <h3> Confirmation mot de passe : </h3>
 			 	<input type="password" name="confirmation" required style=" height : 5%; width: 50%;" > </br></br>
 			 <input type ="checkbox" id ="CGU" unchecked>
-			 <label for ="CGU" class = "cgu"> J'accepte les conditions d'utilisations et les mentions légales </label> </br> 
+			 <label for ="CGU" class = "textBlanc"> J'accepte les conditions d'utilisations et les mentions légales </label> </br> 
 			 <button style="size : 40px; height: 40px;">Confirmer </button>  </br>
 		</div> 
 	</div>
