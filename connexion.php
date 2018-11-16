@@ -2,53 +2,105 @@
 <html>
 <head>
 	<meta charset="utf-8"> <!-- UTF-8 permet d'obtenir tous les caractères chinois, arabdes, accents... -->
-		<link rel="stylesheet"  href="connexion.css"/>
+		<!--<link rel="stylesheet"  href="connexion.css"/>-->
 		<title> DomoLink </title>
 </head>
 <body>
-	<header>
-		<p> 
-			<img src="logoapp.png" alt="DomoLink" /></br> 
-			<em> DomoLink </em> : le top de la maison connectée ! 
-		</p>
-	</header>
+	<?php include("header.php"); ?>
 	<div class = "Section" > 
 		<div class = "Section1" > 
 			<div class="sousection1">
-			<h2> Connexion </h2>
-			<!--</br></br></br></br>-->
-			<h3> E-mail : </h3>
-				<input type="text" name="e-mail" required style=" height : 30px; width: 50%;" >
-			<h3> Mot de passe </h3>
-				<input type="password" name="mot de passe" size="40" required style=" height : 30px;"> </br></br>
-				<button style=" size : 40px;height : 40px;" href ="Gérer son compte.html"> Connexion </button> </br> </br>
-			<a class = "textBlanc" href ="Oublié.html"> Mot de passe oublié </a> 
-			</div> 
+			<h2 style= "font-size: 3vh;"> Connexion </h2>
+			<h3 style= "font-size: 2vh;">Identifiant :</h3>
+				<form action="login.php" method="post">
+					<input type="text" name="identifiant" required  style=" height : 3vh; width: 50%;" >
+			<h3 style= "font-size: 2vh;">Mot de passe :</h3>
+				<input type="password" name="mdp" required style=" height : 3vh; width: 50%;"> </br></br>
+				<input type="submit" value="Connexion" style="width : 80px; height: 4vh;"></br>
+				</form>
+			<a class = "textBlanc" href ="Oublié.html" style= "font-size: 2vh;"> Mot de passe oublié </a> 
+			</div>
 		</div> 
+
 		<div class = "Section2"> 
 			<h2> S'inscrire </h2>
-			<h3> Identifiant : </h3>
-				<input type="text" name="prénom" required style=" height : 5%; width: 50%;" >
+			<h3>Identifiant :</h3>
+			<form action="signup.php" method="post">
+				<input type="text" name="identifiant" style=" height : 5%; width : 50%" maxlength='30' >
 			 		</br>
-			 <h3> E-mail : </h3>
-			 	<input type="text" name="e-mail" required style=" height : 5%; width: 50%;" >
+
+			 <h3>E-mail :</h3>
+			 	<input  type="text" name="e-mail" style=" height : 5%; width: 50%;" value="aaa" maxlength='50' >
 			 		</br>
-			 <h3> Mot de passe : </h3>
-			 	<input type="password" name="mdp" required style=" height : 5%; width: 50%;" >
+
+			 <h3>Mot de passe :</h3>
+			 	<input type="password" name="mdp" style=" height : 5%; width:50%;" maxlength='50'>
 			 		</br>
-			 <h3> Confirmation mot de passe : </h3>
-			 	<input type="password" name="confirmation" required style=" height : 5%; width: 50%;" > </br></br>
+
+			 <h3>Confirmation mot de passe :</h3>
+			 	<input type="password" name="mdp2" style=" height : 5%; width:50%;" maxlength='50'> </br></br>
+
 			 <input type ="checkbox" id ="CGU" unchecked>
-			 <label for ="CGU" class = "textBlanc"> J'accepte les conditions d'utilisations et les mentions légales </label> </br> 
-			 <button style="size : 40px; height: 40px;">Confirmer </button>  </br>
+			 <label for ="CGU" class = "cgu"> J'accepte les conditions d'utilisations et les mentions légales </label> </br> 
+			 <input type="submit" value="Confirmer" style="size : 40px; height: 400px;"></br>
+			</form>
 		</div> 
 	</div>
+
+
 	<footer>
 	</br>
 	</br>
+
 		<p> Nous contacter :              
 			</br>
 		<a href = " mailto:gaellerojat@hotmail.fr">  Envoyer un email </a> </p> 
 	</footer>
 </body>
 </html>
+<style>
+h2, h3{
+	color : white;
+	position: center ;
+}
+.Section {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 5px;
+	grid-auto-rows: 80%;
+}
+.Section1 {
+	grid-column: 1;
+	grid-row: 1;
+	background: #AD031A;
+	border: 1px solid #AD031A;
+	text-align: center;
+	font-size: 1vw;
+	position: relative;
+	height: 110%;
+}
+.textBlanc{
+	color : white;
+}
+.sousection1 {
+	height : 60%;
+
+	position: absolute; 
+
+	transform: translateY(30%);
+	width: 100%;
+}
+.Section2  {
+	grid-column: 2;
+	grid-row: 1;
+	background: #AD031A;
+	border: 1px solid #AD031A;
+	text-align: center ;
+	font-size: 13px;
+	height: 110%;
+}
+em {
+	color : red;
+}
+
+</style>
