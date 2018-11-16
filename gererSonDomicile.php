@@ -1,50 +1,36 @@
 <?php
   session_start();
   if(empty($_SESSION['id'])){
-    //header("Location:/index.html");
+    header("Location:/connexion.php");
   }
 ?>
+<!DOCTYPE html>
+
 <head>
+ <!-- UTF-8 permet d'obtenir tous les caractères chinois, arabdes, accents... -->
+  <meta charset="UTF-8">
   <link rel="shortcut icon" href="favicon.png"/>
-  <meta charset="utf-8">
+  <meta name="description" content="Le top de la maison Connectée !">
   <title>DomoLink</title>
 </head>
 <body>
-<div class="wrapper">
-  <div class="topIcon"><a href="gererSonDomicile?piece=VueGenerale"><img draggable="false" src="Logo APP.png" alt="DomoLink" width = 100%/></a></div>
-  <div class="topMenu">
-  <div class="menuItem">
-      <a href="default.asp"><img href="default.asp" draggable="false" href="" src="accueil.png" alt="DomoLink" width = 70%/></a>
-      <a href="default.asp" class="caption" >Accueil</a>
-    </div>
-    <div class="menuItem">
-      <a href="default.asp"><img draggable="false" src="notifications.png" alt="DomoLink" width = 70%/></a>
-      <a href="default.asp"  class="caption">Notifications</a>
-    </div>
-    <div class="menuItem">
-      <a href="default.asp"><img href="default.asp" draggable="false" href="" src="compte.png" alt="DomoLink" width = 70%/></a>
-      <a href="default.asp" class="caption" >Compte</a>
-    </div>
-    <div class="menuItem">
-      <a href="default.asp"><img draggable="false" src="aide.png" alt="DomoLink" width = 70%/></a>
-      <a href="default.asp"  class="caption">Aide</a>
-    </div>
-  </div>
-  <div class = "menu">
-  <?php
+  <?php include("header.php"); ?>
+  <div class="wrapper">
+    <div class = "menu">
+    <?php
       try {
-        $bdd = new PDO('mysql:host=127.0.0.1;dbname=test;charset=utf8', 'root', 'alpine');
-        $reponse = $bdd->query('SELECT * FROM pieces');
+        $bdd = new PDO('mysql:host=127.0.0.1;dbname=Domolink;charset=utf8', 'root', 'alpine');
+        $req = $bdd->prepare('SELECT id,nom FROM pieces WHERE id_utilisateur = :id_utilisateur');
+        $req->execute(Array('id_utilisateur' => $_SESSION['id']));
       } catch(Exception $e) {
         echo "<script>alert('Impossible de se connecter à la base de donnée !');</script>";
       }
-      /* Ne pas mettre 2 pièce même nom*/
       if ($_GET["piece"] == "VueGenerale"){
         echo "<a class='first active' href='?piece=VueGenerale'>Vue Générale</a>";
       } else {
         echo "<a class='first' href='?piece=VueGenerale'>Vue Générale</a>";
       }
-      while($reponse && $donnees = $reponse->fetch()) {
+      while($req && $donnees = $req->fetch()) {
         if ($donnees['id'] == $_GET["piece"]){
           echo "<a class='active' href='?piece={$donnees['id']}'>{$donnees['nom']}</a>";
         } else {
@@ -56,13 +42,13 @@
       } else {
         echo "<a class='last' href='?piece=AjouterPiece'>+ Ajouter Pièce</a>";
       }
-  ?>
-  </div>
+    ?>
+    </div>
   <?php if($_GET['piece'] == 'VueGenerale') : ?>
   <?php elseif($_GET["piece"] == 'AjouterPiece') : ?>
     <div class='formPiece'>
       <form autocomplete='off' class='titre' action='modifPiece.php' method='post'> Nom de la pièce :<br><br>
-        <input class='entry' type='text' name='nomPiece' value='' maxlength='16'><br><br>
+        <input  type='text' name='nomPiece' value='' maxlength='16'><br><br>
         <input class='button buttonAdd' type='submit' value='Ajouter'>
       </form>
     </div>
@@ -85,36 +71,14 @@
       <div class='box'></div>
       <div class='box'></div>
     </div> 
-    <?php echo "<form class='wrapDeleteButton' action='modifPiece?piece={$_GET['piece']}' method='post'>"; ?>
+    <form class='wrapDeleteButton' action='modifPiece?piece=<?php echo $_GET['piece']; ?>' method='post'>
       <input type='submit' class='button buttonDelete' value='Supprimer la pièce' name='piece'>
     </form>
   <?php endif ; ?>
   </div>
 </body>
-<style>
-@font-face {
-  font-family: "Comfortaa-Regular";
-  src: url('Comfortaa-Regular.ttf');
-}
-@font-face {
-  font-family: "Comfortaa-Bold";
-  src: url('Comfortaa-Bold.ttf');
-}
-.menuItem {
-  display : table-cell;
-  text-align:center;
-  text-decoration: none;
-}
-.caption {
-  font-family: "Comfortaa-Regular";
-  display : block;
-  font-weight:bold;
-  color:#EF0A0A;
-  font-size: 1vw;
-  margin-top: 4%;
-  cursor: pointer;
-  text-decoration: none;
-}
+</html>
+<style type="text/css">
 .entry {
   color:#0063e3;
   width : 100%;
@@ -146,10 +110,10 @@
   transform: translateY(1px);
 }
 .buttonDelete:hover {
-  background-color: #d70909
+  background-color: #d70909;
 }
 .buttonAdd:hover {
-  background-color: #0059CC
+  background-color: #0059CC;
 }
 .buttonDelete {
   background-color: #EF0A0A;
@@ -164,33 +128,29 @@
   height : 100px;
   display:inline-block;
   margin : 20px;
-  
 }
 .ajouterBox{
   background-image: url("Fond Ajouter Appareil.png");
   background-color: #ffffff;
 }
-#customScroll::-webkit-scrollbar-track
-{
+#customScroll::-webkit-scrollbar-track {
   border-radius: 10px;
   background-color: #F5F5F5;
 }
-#customScroll::-webkit-scrollbar
-{
+#customScroll::-webkit-scrollbar {
   height : 4px;
 }
-#customScroll::-webkit-scrollbar-thumb
-{
+#customScroll::-webkit-scrollbar-thumb {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
   background-color: #555;
 }
 .scrollCapts
 {
-  grid-row : 2;
+  grid-row : 1;
 }
 .scrollActs{
-  grid-row : 3;
+  grid-row : 2;
 }
 .wrapper {
   display: grid;
@@ -200,21 +160,21 @@
 }
 .wrapDeleteButton {
   grid-column: 5;
-  grid-row : 4;
+  grid-row : 3;
 }
 .formPiece {
   grid-column: 4;
-  grid-row : 2/3;
+  grid-row : 1/2;
 }
 .actionneurs {
   margin-top : 40%;
   grid-column: 3;
-  grid-row : 3;
+  grid-row : 2;
 }
 .capteurs {
   margin-top : 40%;
   grid-column: 3;
-  grid-row : 2;
+  grid-row : 1;
   
 }
 .scrollbar {
@@ -226,41 +186,29 @@
   white-space:nowrap;
   font-size:0;
 }
-.topMenu {
-  margin-top: 15px;
-  display : table;
-  grid-column: 6/8;
-  grid-row : 1;
-}
-.topIcon {
-  grid-column: 1/3;
-  grid-row : 1/3;
-  width : 90%;
-}
 .menu{
   grid-column: 1/3;
   margin-left: 20%;
-  grid-row : 2/4;
+  grid-row : 1/3;
   float:left;
 }
-.menu a {
+.menu a { 
   font-size : 1.2vw;
   text-align: center;
-  color:#0063e3;
+  color: #0063e3;
   float: left;
-  height: 10%;
   width: 80%;
   text-decoration: none;
   transition: background-color .3s;
   border: 1px solid #ddd; 
-  padding : 14px 0px 10px 0px;
+  padding : 14px 0 10px 0;
 }
-.menu a.active {
+.menu .active {
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
   color:#EF0A0A;
   font-weight:bold;
   width: 100%;
-  border-bottom-right-radius: 5px;
-  border-top-right-radius: 5px;
 }
 .menu a:hover {
   background-color: #96BEFF;
