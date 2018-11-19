@@ -56,14 +56,12 @@ header
   font-size: 9px;
 }
 .topMenu {
-  background-color : green;
   display: inline;
   margin-left:auto;
   width : 440px;
 }
 .menuItem {
   min-width : 60px;
-  background-color : black;
   float : right;
   width : 20%;
   display : inline-block;
