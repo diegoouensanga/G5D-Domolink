@@ -8,11 +8,11 @@
   <?php if($_SERVER['PHP_SELF'] != "/connexion.php"): ?>
   <div class="topMenu">
     <div class="menuItem">
-      <a href="a"><img draggable="false" src="aide.png" alt="DomoLink" width = 60vw/></a>
+      <a href="a"><img draggable="false" src="aide.png" alt="DomoLink" width = 60px/></a>
       <a href="default.asp"  class="caption">Aide</a>
     </div>
     <div class="menuItem">
-      <a href="a"><img href="default.asp" draggable="false" href="" src="compte.png" alt="DomoLink" width = 60vw/></a>
+      <a href="a"><img href="default.asp" draggable="false" href="" src="compte.png" alt="DomoLink" width = 60px/></a>
       <a href="default.asp" class="caption" >Compte</a>
     </div>
     <!--<div class="menuItem">
@@ -20,7 +20,7 @@
       <a href="default.asp" class="caption" >Gérer</a>
     </div>-->
     <div class="menuItem">
-      <a href="a"><img href="default.asp" draggable="false" href="" src="accueil.png" alt="DomoLink" width = 60vw/></a>         
+      <a href="a"><img href="default.asp" draggable="false" href="" src="accueil.png" alt="DomoLink" width = 60px/></a>         
       <a href="default.asp" class="caption" >Accueil</a>
     </div>
   </div>
@@ -37,6 +37,7 @@
 }
 header
 {
+  height : 10%;
   display : flex;
   width : 100%;
   margin-bottom:2%;
@@ -51,14 +52,18 @@ header
 }
 .slogan{
   font-family: "Comfortaa-Regular";
-  font-size: 1%;
+  width : 100%;
+  font-size: 9px;
 }
 .topMenu {
+  background-color : green;
   display: inline;
   margin-left:auto;
-  width : 340px;
+  width : 440px;
 }
 .menuItem {
+  min-width : 60px;
+  background-color : black;
   float : right;
   width : 20%;
   display : inline-block;
