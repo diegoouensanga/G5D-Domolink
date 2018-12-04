@@ -7,7 +7,7 @@
 
 .menu {
   float:left;
-   width:20%;
+   width:50%;
 
 }
 #write
@@ -47,12 +47,11 @@ margin-bottom:1000px;
 
 <div class="menu">
 
+<a href="nouveaumessage.php"><button style ="width:100%;" id="write">Nouveau message</button></a>
 
-<a href="nouveaumessage.php"><button id="write">Nouveau message</button></a>
+<a href="messagesrecus.php"><button style ="width:100%;" id="recus">Reçus</button></a>
 
-<a href="messagesrecus.php"><button id="recus">Reçus</button></a>
-
-<a href="messagesenvoyes.php"><button id="envoyes">Envoyés</button></a>
+<a href="messagesenvoyes.php"><button style ="width:100%;" id="envoyes">Envoyés</button></a>
 
 </div>
 
