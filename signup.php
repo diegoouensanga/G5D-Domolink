@@ -1,19 +1,8 @@
 <?php
-    try {
-        $bdd = new PDO('mysql:host=127.0.0.1;dbname=Domolink;charset=utf8', 'root', 'alpine');
-        $bdd->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
-    } catch(Exception $e) {
-        $error = true;
-        header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
-        echo "<script>
-                alert('Problème de connexion à la base de données !');
-                window.location.href='gererSonDomicile?piece=VueGenerale';
-              </script>";
-    }
-    if (!$error){
-        if (false){
-        $post =  htmlspecialchars($_POST['prenom']); 
-        echo $post;
+    include("fonctions.php");
+    if (false){
+    $post =  htmlspecialchars($_POST['prenom']); 
+    echo $post;
         /*
         $req = $bdd->prepare('INSERT INTO pieces(nom) VALUES(:nom)');
         $req->execute(array(
@@ -32,28 +21,13 @@
             'id' => $id,
         ));*/
         }
-        else {
-            echo "ok";
-            $identifiant = $_POST['identifiant'];
-            echo $identifiant;
-
-            $mdp = $_POST['mdp'];
-            echo $mdp;
-            $req = $bdd->prepare("INSERT INTO Utilisateurs(identifiant,mdp) VALUES(:identifiant,:mdp)");
-            print_r($bdd->errorInfo());
-
-            $req->execute(array(
-                'mdp' => $mdp,
-                'identifiant' => $identifiant,
-            ));
-            print_r($bdd->errorInfo());
-             echo "<script>
-                alert('Problème de connexion à la base de données !');
+    else {
+        $identifiant = $_POST['identifiant'];
+        $mdp = $_POST['mdp'];
+        $req = Database::execute("INSERT INTO Utilisateurs(identifiant,mdp) VALUES(:identifiant,:mdp)",array(
+            'mdp' => $mdp,'identifiant' => $identifiant));
+        echo "<script> alert('Enregistrement réussi !');
                 window.location.href='connexion.php';
                 </script>";
-
         }
-    }
-    
-
 ?>
