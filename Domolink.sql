@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  jeu. 06 déc. 2018 à 09:12
+-- Généré le :  jeu. 06 déc. 2018 à 12:05
 -- Version du serveur :  8.0.13
 -- Version de PHP :  7.1.19
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `Domolink`
 --
+CREATE DATABASE IF NOT EXISTS `Domolink` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `Domolink`;
 
 -- --------------------------------------------------------
 
