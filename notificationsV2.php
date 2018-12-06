@@ -29,9 +29,9 @@
         while ($donnees = $reponse->fetch()) {
             ?>
             <button class="buttonA">
-			<span><?php
+			<span>
 
-            echo $donnees['Provenance'] . ' / ' . $donnees['Objet'] . '  ( ' . $donnees['Date envoi'] . ')<br />
+            <strong><?php echo $donnees['Provenance']?></strong> <?php echo $donnees['Objet'] . '  ( ' . $donnees['Date envoi'] . ')<br />
 				';
             ?></span>
 		</button>
@@ -100,7 +100,7 @@ h1 {
 }
 
 .buttonA:hover span {
-	padding-right: 20px;
+	padding-right: 10px;
 }
 
 .buttonA:hover span:after {

@@ -10,7 +10,7 @@
   require_once("fonctions.php");
   session_start();
   if(empty($_SESSION['id']) && !($_SERVER['REQUEST_URI']== "/connexion.php")){
-    header("Location:/connexion.php");
+    //header("Location:/connexion.php");
   }
   else {
     $req2 = Database::execute('SELECT nom,slogan FROM administration',null);
