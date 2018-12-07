@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  jeu. 06 déc. 2018 à 12:05
+-- Généré le :  ven. 07 déc. 2018 à 19:21
 -- Version du serveur :  8.0.13
 -- Version de PHP :  7.1.19
 
@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `Domolink`
 --
-CREATE DATABASE IF NOT EXISTS `Domolink` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+CREATE DATABASE IF NOT EXISTS `Domolink` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `Domolink`;
 
 -- --------------------------------------------------------
@@ -31,15 +31,15 @@ USE `Domolink`;
 --
 
 CREATE TABLE `Administration` (
-  `cgu` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `cgu` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `adresse` varchar(255) NOT NULL,
   `mail` varchar(255) NOT NULL,
   `telephone` varchar(10) NOT NULL,
-  `mentions_legales` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `mentions_legales` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `nom` varchar(50) NOT NULL,
   `societe` varchar(50) NOT NULL,
   `slogan` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `Administration`
@@ -60,7 +60,7 @@ CREATE TABLE `Animaux` (
   `age` int(11) DEFAULT NULL,
   `race` varchar(30) DEFAULT NULL,
   `equipement_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -76,7 +76,7 @@ CREATE TABLE `Equipement` (
   `genre` varchar(30) DEFAULT NULL,
   `donnees` int(11) DEFAULT NULL,
   `piece_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -88,7 +88,7 @@ CREATE TABLE `FAQ` (
   `id` int(11) NOT NULL,
   `question` text NOT NULL,
   `reponse` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -99,7 +99,7 @@ CREATE TABLE `FAQ` (
 CREATE TABLE `Increment` (
   `statistique_id` int(11) DEFAULT NULL,
   `equipement_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -115,7 +115,7 @@ CREATE TABLE `Notifications` (
   `lu` tinyint(1) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   `utilisateur_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -130,7 +130,7 @@ CREATE TABLE `Pannes` (
   `message` text,
   `etat` int(11) DEFAULT NULL,
   `client_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -140,9 +140,9 @@ CREATE TABLE `Pannes` (
 
 CREATE TABLE `Pieces` (
   `id` int(11) NOT NULL,
-  `nom` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nom` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `id_utilisateur` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `Pieces`
@@ -164,7 +164,7 @@ CREATE TABLE `RDV` (
   `horaire` datetime DEFAULT NULL,
   `reparateur_id` int(11) DEFAULT NULL,
   `client_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -179,7 +179,7 @@ CREATE TABLE `Statistiques` (
   `depart` datetime DEFAULT NULL,
   `espacement` time DEFAULT NULL,
   `utilisateur_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -189,12 +189,12 @@ CREATE TABLE `Statistiques` (
 
 CREATE TABLE `Utilisateurs` (
   `id` int(11) NOT NULL,
-  `identifiant` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `nom` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `prenom` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `identifiant` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `nom` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `prenom` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `age` int(11) DEFAULT NULL,
-  `mail` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `mdp` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `mail` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `mdp` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `type` int(11) NOT NULL DEFAULT '0',
   `telephone` varchar(10) DEFAULT NULL,
   `naissance` date DEFAULT NULL,
@@ -204,15 +204,15 @@ CREATE TABLE `Utilisateurs` (
   `rue` varchar(100) NOT NULL,
   `numeroRue` int(11) NOT NULL,
   `autres` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `Utilisateurs`
 --
 
 INSERT INTO `Utilisateurs` (`id`, `identifiant`, `nom`, `prenom`, `age`, `mail`, `mdp`, `type`, `telephone`, `naissance`, `postal`, `ville`, `pays`, `rue`, `numeroRue`, `autres`) VALUES
-(5, 'x', NULL, NULL, NULL, NULL, 'x', 0, NULL, NULL, NULL, NULL, NULL, '', 0, '0'),
-(13, 'tes', NULL, NULL, NULL, NULL, '9834876dcfb05cb167a5c24953eba58c4ac89b1adf57f28f2f9d09af107ee8f0', 0, NULL, NULL, NULL, NULL, NULL, '', 0, '0');
+(5, 'aaaa', 'ccccc', 'ddddd', NULL, 'bbbbb', 'x', 0, '0636303630', '1970-12-30', 80910, 'France', 'France', 'aze', 34, ''),
+(13, 'tes', 'dgd', 'fdgd', NULL, 'dfgdgd', '9834876dcfb05cb167a5c24953eba58c4ac89b1adf57f28f2f9d09af107ee8f0', 0, '111', '1970-01-01', 111, 'fdgdg', 'fdgdf', 'gdfgdfg', 0, '0');
 
 --
 -- Index pour les tables déchargées
