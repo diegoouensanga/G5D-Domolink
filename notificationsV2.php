@@ -12,7 +12,7 @@
     
     <?php
     try {
-        $bdd = new PDO('mysql:host=localhost;dbname=Notifications;charset=utf8', 'root', 'root');
+        $bdd = new PDO('mysql:host=localhost;dbname=Domolink;charset=utf8', 'root', 'root');
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
     }
@@ -23,25 +23,28 @@
     
     <section>
 		<h1>Notifications</h1>
-		
-		
+
         	<?php
-        while ($donnees = $reponse->fetch()) {
+        	if(empty($reponse))
+        	{
+        	    echo "<p>Il n'y a pas de nouvelle notification</p>";
+        	}
+        	else
+        	{
+        	    while ($donnees = $reponse->fetch()) {
+            	        ?>
+                <button class="buttonA">
+    			<span><strong><a href="notifications.php"title="page des notifications"><?php echo $donnees['expediteur']?></strong> 
+    			<?php echo $donnees['objet'] . '  (' . $donnees['date'] . ')<br />';
+                ?></a></span>
+        		</button>
+                    <?php
+                }
+        	}
+        
+            $reponse->closeCursor();
+    
             ?>
-            <button class="buttonA">
-			<span>
-
-            <strong><?php echo $donnees['Provenance']?></strong> <?php echo $donnees['Objet'] . '  ( ' . $donnees['Date envoi'] . ')<br />
-				';
-            ?></span>
-		</button>
-                
-			
-            <?php
-        }
-        $reponse->closeCursor();
-
-        ?>
         	
     	
 
@@ -62,6 +65,11 @@ h1 {
 	font-family: "Comfortaa-Bold";
 	color: #D52C42;
 	text-align: center;
+}
+
+a {
+	color: white;
+	text-decoration: none;
 }
 
 .buttonA {
