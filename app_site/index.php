@@ -14,9 +14,6 @@ if (isset($_GET["action"])) {
             formulaire_panne();
             break;
 
-        case "faq":
-            questions_frequentes();
-            break;
 
         case "conf_rdv":
             confirmation_rdv();

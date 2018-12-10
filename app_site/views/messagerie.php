@@ -16,17 +16,17 @@
         <nav>
             <p><a href="index.php?action=prise_de_rdv">Prise de rendez-vous</a></p>
             <p><a href="index.php?action=signaler_une_panne">Formulaire de Panne</a></p>
-            <p><a href="index.php?action=faq">Les questions frequentes</a></p>
+            <p><a href="index.php?">Les questions frequentes</a></p>
             <p><a href="index.php?action=messagerie"> Messagerie </a>
                 <div class ="menumessagerie">
                     <nav>
-            <p> <a href="index.php?"action=nouveau_message> Nouveau message  </a></p>
-            <p> <a href="index.php?"action=message_envoye> Messages envoyés  </a></p>
-            <p> <a href="index.php?"action=message_reçu> Messages reçus</a></p>
+                        <ul><a href="index.php?"action=nouveau_message> Nouveau message  </a></ul>
+                        <ul><a href="index.php?"action=message_envoye> Messages envoyés  </a></ul>
+                        <ul><a href="index.php?"action=message_recu> Messages reçus</a></ul>
+
         </nav>
     </div>
     </p>
-    <p><a href="index.php"> Home</a> </p>
     </nav>
 </div>
 <div class="corps">

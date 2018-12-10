@@ -16,7 +16,7 @@
         <nav>
             <p><a href="index.php?action=prise_de_rdv">Prise de rendez-vous</a></p>
             <p><a href="index.php?action=signaler_une_panne">Formulaire de Panne</a></p>
-            <p><a href="index.php?action=faq">Les questions frequentes</a></p>
+            <p><a href="index.php?">Les questions frequentes</a></p>
             <p><a href="index.php?action=messagerie"> Messagerie </a>
                 <div class ="menumessagerie">
                     <nav>
