@@ -34,4 +34,8 @@ function message_recu(){
 function message_envoye(){
     require "views/message_envoye.php";
 }
+
+function nouveau_message(){
+    require "views/messagerie";
+}
 ?>

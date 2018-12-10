@@ -35,7 +35,7 @@ if (isset($_GET["action"])) {
             break;
 
         case "nouveau_message":
-            nouveau_message();
+            messagerie();
             break;
 
         case "message_envoye":
