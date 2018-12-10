@@ -13,8 +13,12 @@
     margin-bottom: 10px;
 }
 
-.corps{
+.corps {
     font-family: Comfortaa;
+}
+.corps h3{
+    font-family: Comfortaa;
+
 }
 
 .menu a {
@@ -114,8 +118,7 @@ input[type="text"]{
 
 }
 
-.menumessagerie a:hover{
-    background-color: #D52C42;
-    padding-right: 15px;
+.menumessagerie ul :hover{
+    background-color: lightskyblue;
     transition: 1s;
 }

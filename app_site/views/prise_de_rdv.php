@@ -16,16 +16,16 @@
     <div class="corps">
         <h1>Prise de rendez-vous</h1>
         <p>
-            <label> Cause :
+            <label> <h3> Cause : </h3>
                 <label><input type="radio" name="cause_rdv" value="panne">Panne</label>
                 <label><input type="radio" name="cause_rdv" value="installation">Installation</label>
                 <label><input type="radio" name="cause_rdv" value="devis">Devis</label>
                 <label><input type="radio" name="cause_rdv" value="autre">Autres</label>
-            </label> <br>
-            <label> Date : <br>
+            </label> <br><br>
+            <label> <h3>Date :</h3> <br>
                 <input type="date" name="date" JJ/MM/AAAA >
-            </label> <br>
-            <label> Jour de la semaine :
+            </label> <br><br>
+            <label> <h3> Heure : </h3>
                 <select name="heure">
                     <option value = "matin">9h à 12h</option>
                     <option value = "debutap">13h à 15h</option>

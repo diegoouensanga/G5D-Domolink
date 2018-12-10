@@ -22,14 +22,14 @@
         <H1>Formulaire de panne</H1>
         <p>
             <label>
-                Numéro du capteur : <input type="number" name="id">
-            </label> <br>
+                <h3> Numéro du capteur :</h3> <input type="number" name="id">
+            </label> <br> <br>
             <label>
-                Cause de la panne : <br>
+                <h3> Cause de la panne : </h3> <br>
                 <textarea name="cause_panne" rows="5" cols="50"></textarea>
-            </label> <br>
+            </label> <br> <br>
             <label>
-                Date de la panne : <input type="date" name="date" JJ/MM/AAAA >
+                <h3> Date de la panne : </h3> <input type="date" name="date" JJ/MM/AAAA >
             </label> <br>
             <a href="index.php?action=conf_fp"> Envoyer  </a>
         </p>
