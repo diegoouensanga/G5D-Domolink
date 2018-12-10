@@ -103,3 +103,19 @@ input[type="text"]{
     color :#0063e3;
     font-size:1.5vw;
 }
+
+.menumessagerie{
+    font-family: Comfortaa;
+}
+
+.menumessagerie a{
+    text-align: center;
+    color: #0059CC;
+
+}
+
+.menumessagerie a:hover{
+    background-color: #D52C42;
+    padding-right: 15px;
+    transition: 1s;
+}
