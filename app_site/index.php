@@ -30,6 +30,22 @@ if (isset($_GET["action"])) {
             confirmation_panne();
             break;
 
+        case "messagerie":
+            messagerie();
+            break;
+
+        case "nouveau_message":
+            nouveau_message();
+            break;
+
+        case "message_envoye":
+            message_envoye();
+            break;
+
+        case "message_recu":
+            message_recu();
+            break;
+
         default :
             echo"error 404";
             break;
