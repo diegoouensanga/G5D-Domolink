@@ -66,7 +66,7 @@ margin-bottom:10px;
 
     <div id="menuaide">
 <nav>
-            <p><a href="priserdv.php">Prise de rdv</a></p>
+            <p><a href="priserdv.php">Prise de rendez-vous</a></p>
             <p><a href="formpanne.php">Formulaire de panne</a></p>
             <p><a href="faq.php">Foire aux questions</a></p>
             <?php include("menumessagerie.php"); ?>
