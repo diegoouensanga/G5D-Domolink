@@ -1,5 +1,4 @@
 <footer>
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa" />
     <div class="grille">
         <div class = "location">
             <h3> Où nous trouver ? </h3>
@@ -28,42 +27,40 @@
 
 
 <style>
-
     footer
     {
     //background-color: #AD031A;
         height: 20%;
         width: 100%;
+        margin-top: 50%;
 
     }
     .grille
     {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         grid-gap: 5px;
         grid-auto-rows: 100%;
-        font-family: Comfortaa;
+
     }
+
     .location
     {
         grid-column: 1;
         grid-row: 1;
     }
+
     .web
     {
         grid-column: 2;
         grid-row: 1;
+
     }
+
     .a_propos
     {
         grid-column: 3;
         grid-row: 1;
     }
+
 </style>
-<?php
-/**
- * Created by IntelliJ IDEA.
- * User: Akhara
- * Date: 10/12/2018
- * Time: 12:43
- */
