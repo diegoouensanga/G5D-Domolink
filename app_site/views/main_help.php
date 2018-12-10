@@ -14,10 +14,12 @@
     </div>
     <div class="menu">
         <nav>
-            <p><a href="index.php?action=prise_de_rdv"> Prise de rendez-vous</a></p>
+            <p><a href="index.php?action=prise_de_rdv">Prise de rendez-vous</a></p>
             <p><a href="index.php?action=signaler_une_panne">Formulaire de panne</a></p>
             <p><a href="index.php?action=faq">Les questions fréquentes</a></p>
             <p><a href="index.php?action=contact">Contact</a></p>
+            <p><a href="index.php?action=messagerie"> Messagerie</a></p>
+            <p><a href="index.php"> Home</a> </p>
         </nav>
     </div>
     <div class="corps">

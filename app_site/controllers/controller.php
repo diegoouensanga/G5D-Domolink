@@ -22,4 +22,16 @@ function confirmation_rdv(){
 function confirmation_panne(){
     require "views/confirmation_panne.php";
 }
+
+function messagerie(){
+    require "views/messagerie.php";
+}
+
+function message_recu(){
+    require "views/message_recu.php";
+}
+
+function message_envoye(){
+    require "views/message_envoye.php";
+}
 ?>
