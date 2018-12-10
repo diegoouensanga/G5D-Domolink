@@ -18,13 +18,12 @@
             <p><a href="index.php?action=signaler_une_panne">Formulaire de Panne</a></p>
             <p><a href="index.php?action=contact">Contact</a></p>
             <p><a href="index.php?action=faq">Les questions frequentes</a></p>
-            <p><a href="index.php?actiopn=messagerie"> Messagerie </a>
+            <p><a href="index.php?action=messagerie"> Messagerie </a>
                 <div class ="menumessagerie">
                     <nav>
             <p> <a href="index.php?"action=nouveau_message> Nouveau message  </a></p>
             <p> <a href="index.php?"action=message_envoye> Messages envoyés  </a></p>
             <p> <a href="index.php?"action=message_reçu> Messages reçus</a></p>
-
         </nav>
     </div>
     </p>
@@ -32,8 +31,28 @@
     </nav>
 </div>
 <div class="corps">
-    <h1>Contact</h1>
-    <p>Contactez nous par mail : domolynk@isep.fr . </p>
+    <h1> Nouveau message  </h1>
+
+    <label for="desinataire">Destinataire :  </label>
+
+
+    <select id="destinataire" name="destinataire">
+        <option value="Jean  Boursin">Jean Boursin</option>
+        <option value="Michel Vianot">Michel Vianot</option>
+        <option value="Patrick Wang">Patrick Wang</option>
+
+    </select>
+    <button id="ajoutcontact"> Ajouter un contact </button>
+    <br>
+    <label for="objet">Objet :  </label>
+
+    <input type="text" id="objet"  placeholder="Exemple : Rendez-vous technicien vendredi 18 novembre">
+    <br>
+    <label for="message">Message :  </label>
+    <br>
+    <textarea id="message" placeholder="Exemple : Bonjour, je souhaitais vous contacter à propos de..."></textarea>
+    <br>
+    <button id="envoyer"> Envoyer </button>
 </div>
 </div>
 <?php include ("footer.php"); ?>
