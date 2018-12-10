@@ -34,7 +34,7 @@
         	    while ($donnees = $reponse->fetch()) {
             	        ?>
                 <button class="buttonA">
-    			<span><strong><a href="notifications.php"title="page des notifications"><?php echo $donnees['expediteur']?></strong> 
+    			<span><strong><a href="notifications.php" title="page des notifications"><?php echo $donnees['expediteur']?></strong>
     			<?php echo $donnees['objet'] . '  (' . $donnees['date'] . ')<br />';
                 ?></a></span>
         		</button>

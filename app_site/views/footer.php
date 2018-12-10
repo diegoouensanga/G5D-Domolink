@@ -12,9 +12,9 @@
 
         <div class ="web" style="color:#0063e3;">
             <h3 style="color :#D52C42;"> Suivez-nous sur les réseaux sociaux </h3>
-            <a href="#" style="color :#0063e3;"><img src="Icons/Twitter.png" width="30vw">Twitter</a><br>
-            <a href="#" style="color :#0063e3;"><img src="Icons/Facebook.png" width="30vw"></a>Facebook<br>
-            <a href="#" style="color :#0063e3;"><img src="Icons/Instagram.png" width="30vw"></a>Instagram
+            <a href="#" style="color :#0063e3;"><img src="public/image/Twitter.png" width="30vw">Twitter</a><br>
+            <a href="#" style="color :#0063e3;"><img src="public/image/Facebook.png" width="30vw"></a>Facebook<br>
+            <a href="#" style="color :#0063e3;"><img src="public/image/Instagram.png" width="30vw"></a>Instagram
         </div>
 
         <?php if($_SERVER['PHP_SELF'] != "/connexion.php"): ?>
