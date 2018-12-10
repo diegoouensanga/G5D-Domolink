@@ -16,7 +16,7 @@
         die('Erreur : ' . $e->getMessage());
     }
 
-    $reponse = $bdd->query('SELECT *, TIME_FORMAT (	"15:21:06.000000", "%Hh%i") AS heure, DATE_FORMAT ("2018-12-08", "%d/%m/%Y") AS date FROM Notifications');
+    $reponse = $bdd->query('SELECT *, TIME_FORMAT (	heure, "%Hh%i") AS heure, DATE_FORMAT (date, "%d/%m/%Y") AS date FROM Notifications ORDER BY id DESC');
 
     ?>
 
