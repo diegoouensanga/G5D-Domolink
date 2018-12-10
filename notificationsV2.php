@@ -17,7 +17,7 @@
         die('Erreur : ' . $e->getMessage());
     }
 
-    $reponse = $bdd->query('SELECT * FROM Notifications');
+    $reponse = $bdd->query('SELECT *, TIME_FORMAT (	heure, "%Hh%i") AS heure, DATE_FORMAT (date, "%d/%m/%Y") AS date FROM Notifications ORDER BY id DESC');
 
     ?>
     
@@ -25,7 +25,7 @@
 		<h1>Notifications</h1>
 
         	<?php
-        	if(empty($reponse))
+        	if($reponse->rowCount() == 0)
         	{
         	    echo "<p>Il n'y a pas de nouvelle notification</p>";
         	}
@@ -35,7 +35,7 @@
             	        ?>
                 <button class="buttonA">
     			<span><strong><a href="notifications.php"title="page des notifications"><?php echo $donnees['expediteur']?></strong> 
-    			<?php echo $donnees['objet'] . '  (' . $donnees['date'] . ')<br />';
+    			<?php echo $donnees['objet'] . '<br />' . $donnees['heure'] . ' : ' . $donnees['date'] . '<br />';
                 ?></a></span>
         		</button>
                     <?php
@@ -55,10 +55,13 @@
 
 <style>
 section {
+    grid-row: 1/4;
 	border: 1px solid #D52C42;
 	margin-left: 900px;
 	overflow: auto;
-	border-radius: 10px;
+	border-radius: 10px;	
+    grid-column: 7/9;
+    margin-right: 5%;
 }
 
 h1 {
@@ -73,6 +76,7 @@ a {
 }
 
 .buttonA {
+    width : 100%;
 	font-family: "Comfortaa-Regular";
 	background-color: #D46372;
 	border-radius: 5px;
@@ -93,6 +97,7 @@ a {
 
 .buttonA span {
 	cursor: pointer;
+	width : 100%;
 	display: inline-block;
 	position: relative;
 	transition: 0.5s;
