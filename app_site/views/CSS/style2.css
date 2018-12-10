@@ -1,0 +1,14 @@
+.agenda{
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-auto-rows: 10em;
+}
+
+.jours{
+    grid-column: span;
+    grid-row: 1;
+    border: 1px solid #555555;
+}
+
+.jour{
+    padding: 0px 1fr;
+}
