@@ -11,9 +11,6 @@ function formulaire_panne(){
 function questions_frequentes(){
     require "views/faq.php";
 }
-function contact(){
-    require "views/contact.php";
-}
 
 function confirmation_rdv(){
     require "views/confirmation_rdv.php";

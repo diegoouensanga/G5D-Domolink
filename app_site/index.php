@@ -18,10 +18,6 @@ if (isset($_GET["action"])) {
             questions_frequentes();
             break;
 
-        case "contact":
-            contact();
-            break;
-
         case "conf_rdv":
             confirmation_rdv();
             break;
@@ -52,6 +48,6 @@ if (isset($_GET["action"])) {
     }
 }
 else {
-    seeHome();
+    questions_frequentes();
 }
 ?>
