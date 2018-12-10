@@ -1,7 +1,5 @@
 <?php
-function seeHome(){
-    require 'views/main_help.php';
-}
+
 function prise_de_rdv(){
     require "views/prise_de_rdv.php";
 }
