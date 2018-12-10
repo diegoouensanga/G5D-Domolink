@@ -20,9 +20,9 @@
             <p><a href="index.php?action=messagerie"> Messagerie </a>
                 <div class ="menumessagerie">
                     <nav>
-                        <ul><a href="index.php?"action=nouveau_message> Nouveau message  </a></ul>
-                        <ul><a href="index.php?"action=message_envoye> Messages envoyés  </a></ul>
-                        <ul><a href="index.php?"action=message_recu> Messages reçus</a></ul>
+                        <ul><a href="index.php?action=nouveau_message"> Nouveau message  </a></ul>
+                        <ul><a href="index.php?action=message_envoye"> Messages envoyés  </a></ul>
+                        <ul><a href="index.php?action=message_recu"> Messages reçus</a></ul>
 
         </nav>
     </div>
