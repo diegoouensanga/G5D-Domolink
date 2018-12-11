@@ -1,5 +1,4 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+</div>
 <footer>
     <div class="grille">
         <div class = "location">
@@ -12,9 +11,9 @@
 
         <div class ="web" style="color:#0063e3;">
             <h3 style="color :#D52C42;"> Suivez-nous sur les réseaux sociaux </h3>
-            <a href="#" style="color :#0063e3;"><img src="Icons/Twitter.png" width="30vw">Twitter</a><br>
-            <a href="#" style="color :#0063e3;"><img src="Icons/Facebook.png" width="30vw">Facebook</a><br>
-            <a href="#" style="color :#0063e3;"><img src="Icons/Instagram.png" width="30vw">Instagram</a>
+            <a href="#" style="color :#0063e3;"><img src="ressources/Icons/Twitter.png" width="30vw">Twitter</a><br>
+            <a href="#" style="color :#0063e3;"><img src="ressources/Icons/Facebook.png" width="30vw">Facebook</a><br>
+            <a href="#" style="color :#0063e3;"><img src="ressources/Icons/Instagram.png" width="30vw">Instagram</a>
         </div>
 
         <?php if($_SERVER['PHP_SELF'] != "/connexion.php"): ?>
@@ -35,13 +34,12 @@
         vertical-align: middle;
     }
     footer {
-        overflow: hidden;
-        display: block;
-        height : 20%;
-        padding: 4px;
-        color :#D52C42;
         border-top : 1px solid #D52C42;
-        margin-top: 50px;
+        color :#D52C42;
+        width: calc(100% - 8px);
+        position: absolute;
+        left: 0;
+        padding: 4px;
     }
     .grille
     {

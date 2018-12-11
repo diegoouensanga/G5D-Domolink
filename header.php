@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
-  <link rel="shortcut icon" href="favicon.png"/>
+  <link rel="shortcut icon" href="ressources/favicon.png"/>
   <link rel="stylesheet" href="cssGeneral.css">
   <meta name="description" content="Le top de la maison Connectée !">
   <title>DomoLink</title>
@@ -19,10 +19,11 @@
 ?>
 
 <body>
+<div class="contenu">
 <header>
   <div class="topIcon">
     <a href="gererSonDomicile.php?piece=VueGenerale" style= "text-decoration: none;">
-      <img draggable="false" src="Logo%20APP.png?<?php echo(time()); ?>" alt="DomoLink" width=200vw/>
+      <img draggable="false" src="ressources/Logo.png" alt="DomoLink" width=200vw/>
     </a>
     <div class="slogan"></br><em class="slogan compagnie"><?php echo $donneesAdmin['nom']; ?></em> : <?php echo $donneesAdmin['slogan']; ?></div>
   </div>
@@ -33,42 +34,43 @@
     </div>
     <?php endif; ?>
     <div class="menuItem">
-      <a href="gererSonDomicile.php?piece=VueGenerale"><img draggable="false" href="" src="accueil.png" alt="DomoLink" width = 60%/></a>
+      <a href="gererSonDomicile.php?piece=VueGenerale"><img draggable="false" href="" src="ressources/accueil.png" alt="DomoLink" width = 60%/></a>
       <a href="gererSonDomicile.php?piece=VueGenerale" class="caption" >Accueil</a>
     </div>
     <?php if($_SESSION['type'] != 0): ?>
     <div class="menuItem">
-      <a href="administration.php"><img  draggable="false" src="administration.png" alt="DomoLink" width =60%/></a>
+      <a href="administration.php"><img  draggable="false" src="ressources/administration.png" alt="DomoLink" width =60%/></a>
       <a href="administration.php" class="caption" >Gérer</a>
     </div>
     <?php endif; ?>
     <div class="menuItem">
-      <a href="compte.php?action=infos"><img href="default.asp" draggable="false" href="" src="compte.png" alt="DomoLink" width =60%/></a>
+      <a href="compte.php?action=infos"><img href="default.asp" draggable="false" href="" src="ressources/compte.png" alt="DomoLink" width =60%/></a>
       <a href="compte.php?action=infos" class="caption" >Compte</a>
     </div>
     <div class="menuItem">
-      <a href="a"><img draggable="false" src="aide.png" alt="DomoLink" width =60%/></a>
-      <a href="default.asp"  class="caption">Aide</a>
+      <a href="index.php"><img draggable="false" src="ressources/aide.png" alt="DomoLink" width =60%/></a>
+      <a href="index.php"  class="caption">Aide</a>
     </div>
   </div>
   <?php endif; ?>
 </header>
 <style>
-@font-face {
-  font-family: "Comfortaa-Regular";
-  src: url('Comfortaa-Regular.ttf');
-}
-@font-face {
-  font-family: "Comfortaa-Bold";
-  src: url('Comfortaa-Bold.ttf');
-}
+    html {
+        height: 100%;
+    }
+    body {
+        min-height: 100%;
+    }
+    .contenu {
+        min-height:calc(100vh - 240px);
+        height:100%;
+        padding-bottom: 120px;
+    }
 header
 {
   display : flex;
   margin-bottom:20px;
-}
-html,body {
-    height: 100%;
+    padding: 4px;
 }
 .topIcon {
   display: inline;
