@@ -13,7 +13,7 @@
     header("Location:/connexion.php");
   }
   else {
-    $req2 = Database::execute('SELECT nom,societe,telephone,slogan,adresse,mail FROM administration',null);
+    $req2 = Database::execute('SELECT nom,societe,telephone,slogan,adresse,mail,cgu,mentions_legales FROM administration',null);
     $donneesAdmin = $req2->fetch();
 }
 ?>
@@ -34,17 +34,17 @@
     </div>
     <?php endif; ?>
     <div class="menuItem">
-      <a href="gererSonDomicile.php?piece=VueGenerale"><img draggable="false" href="" src="ressources/accueil.png" alt="DomoLink" width = 60%/></a>
-      <a href="gererSonDomicile.php?piece=VueGenerale" class="caption" >Accueil</a>
+      <a href="gererSonDomicile.php?piece=VueGenerale"><img draggable="false" href="" src="ressources/accueil.png" width = 60%/></a>
+      <a href="gererSonDomicile.php?piece=VueGenerale" class="caption" >Mon Domicile</a>
     </div>
     <?php if($_SESSION['type'] != 0): ?>
     <div class="menuItem">
-      <a href="administration.php"><img  draggable="false" src="ressources/administration.png" alt="DomoLink" width =60%/></a>
+      <a href="administration.php"><img  draggable="false" src="ressources/administration.png" width =60%/></a>
       <a href="administration.php" class="caption" >Gérer</a>
     </div>
     <?php endif; ?>
     <div class="menuItem">
-      <a href="compte.php?action=infos"><img href="default.asp" draggable="false" href="" src="ressources/compte.png" alt="DomoLink" width =60%/></a>
+      <a href="compte.php?action=infos"><img href="default.asp" draggable="false" href="" src="ressources/compte.png" width =60%/></a>
       <a href="compte.php?action=infos" class="caption" >Compte</a>
     </div>
     <div class="menuItem">
