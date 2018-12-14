@@ -1,12 +1,20 @@
 <!DOCTYPE>
+
+<header>
+
+    <?php
+    include('header.php');
+    ?>
+
+</header>
+
 <html>
 <?php
 
 //Php pour la connexion
 if(isset($_POST['connexion'])) {
-    $bdd = new PDO('mysql:host=127.0.0.1;dbname=connexion', 'root', 'Azert7Y7uiop77!');
-    $nbre = $bdd->prepare('SELECT identifiant,mdp FROM Utilisateurs WHERE identifiant = :identifiant AND mdp = :mdp');
-    $nbre->execute(array('identifiant' => $_POST['identifiant'], 'mdp' => hash('sha256', $_POST['mdp'])));
+
+    $nbre = Database::execute ('SELECT mdp,mail FROM Utilisateurs WHERE mail = :mail AND mdp = :mdp',array('mail' => $_POST['mail'], 'mdp' => hash('sha256', $_POST['mdp'])) );
     $donnee = $nbre->fetch();
     if ($donnee) //vérifier l'existance d'un identifiant
       {
@@ -21,9 +29,7 @@ if(isset($_POST['connexion'])) {
 //Php pour l'inscription
 if ($_POST['inscription']){
     if(!empty($_POST['identifiant']) && !empty($_POST['cgu'])&& !empty($_POST['mail'])&& !empty($_POST['mdp']) && !empty($_POST['confirmation']) && $_POST['mdp'] == $_POST['confirmation'] ) {
-        $bdd = new PDO('mysql:host=127.0.0.1;dbname=connexion', 'root', 'Azert7Y7uiop77!');
-        $verification = $bdd->prepare('SELECT mail, identifiant FROM Utilisateurs WHERE mail = :mail AND identifiant = :identifiant');
-        $verification->execute(array('mail' => $_POST['mail'], 'identifiant'=>$_POST['identifiant']));
+        $verification = Database::execute ('SELECT mdp,mail,cMAC FROM Utilisateurs WHERE mail = :mail AND cMAC = :cMAC AND mdp = :mdp',array('mail' => $_POST['mail'], 'cMAC' => $_POST['cMAC'], 'mdp' => hash('sha256', $_POST['mdp'])) );
         $existe = $verification->fetch();
         if ($existe){
             echo 'Vous avez déjà un compte';
@@ -34,11 +40,10 @@ if ($_POST['inscription']){
         } else if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL) === false) {
             echo 'adresse email non valide';
         } else {
-            $bdd = new PDO('mysql:host=127.0.0.1;dbname=connexion', 'root', 'Azert7Y7uiop77!');
-            $req = $bdd->prepare('INSERT INTO Utilisateurs(mdp,identifiant,mail) VALUES(:mdp,:identifiant,:mail)');
-            $array = array('identifiant' => $_POST['identifiant'], 'mdp' => hash('sha256', $_POST['mdp']), 'mail' => $_POST['mail']);
-            $req->execute($array);
+            print_r($_POST);
+            $req = Database::execute ('INSERT INTO mdp,mail,cMAC FROM Utilisateurs WHERE mail = :mail AND cMAC = :cMAC AND mdp = :mdp',array('mail' => $_POST['mail'], 'cMAC' => $_POST['cMAC'], 'mdp' => hash('sha256', $_POST['mdp'])) );
         }
+        echo 'a';
     }
 }
 ?>
@@ -50,7 +55,7 @@ if ($_POST['inscription']){
     <?php
     try
     {
-        $bdd = new PDO('mysql:host=127.0.0.1;dbname=connexion', 'root', 'Azert7Y7uiop77!');
+        $bdd = new PDO('mysql:host=127.0.0.1;dbname=Domolink', 'root', 'Azert7Y7uiop77!');
     }
     catch (Exception $e)
     {
@@ -64,13 +69,6 @@ if ($_POST['inscription']){
 
 </head>
 
-<header>
-
-    <?php
-    include('header.php');
-    ?>
-
-</header>
 
 
 <div class = "Section" >
@@ -125,10 +123,12 @@ if ($_POST['inscription']){
 
 </div>
 
+<footer>
+    <?php
+    include('footer.php');
+    ?>
+</footer>
 
 </body>
 
-<?php
-include('footer.php');
-?>
 </html>
