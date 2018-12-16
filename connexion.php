@@ -1,22 +1,16 @@
 <!DOCTYPE>
-
-<header>
-
-    <?php
-    include('header.php');
-    ?>
-
-</header>
+<?php
+include 'header.php';
+?>
 
 <html>
 <?php
 
 //Php pour la connexion
 if(isset($_POST['connexion'])) {
-
-    $nbre = Database::execute ('SELECT mdp,mail FROM Utilisateurs WHERE mail = :mail AND mdp = :mdp',array('mail' => $_POST['mail'], 'mdp' => hash('sha256', $_POST['mdp'])) );
+    $nbre = Database::execute ('SELECT mdp,mail FROM Utilisateurs WHERE mdp = :mdp AND mail = :mail',array('mail'=>$_POST['mail'],'mdp' => hash('sha256', $_POST['mdp'])) );
     $donnee = $nbre->fetch();
-    if ($donnee) //vérifier l'existance d'un identifiant
+    if ($donnee) //vérifier l'existance d'un email
       {
           $_SESSION['id'] = $donnee['id'];
           $_SESSION['type'] = $donnee['type'];
@@ -28,7 +22,7 @@ if(isset($_POST['connexion'])) {
 
 //Php pour l'inscription
 if ($_POST['inscription']){
-    if(!empty($_POST['identifiant']) && !empty($_POST['cgu'])&& !empty($_POST['mail'])&& !empty($_POST['mdp']) && !empty($_POST['confirmation']) && $_POST['mdp'] == $_POST['confirmation'] ) {
+    if(!empty($_POST['cMAC']) && !empty($_POST['cgu'])&& !empty($_POST['mail'])&& !empty($_POST['mdp']) && !empty($_POST['confirmation']) && $_POST['mdp'] == $_POST['confirmation'] ) {
         $verification = Database::execute ('SELECT mdp,mail,cMAC FROM Utilisateurs WHERE mail = :mail AND cMAC = :cMAC AND mdp = :mdp',array('mail' => $_POST['mail'], 'cMAC' => $_POST['cMAC'], 'mdp' => hash('sha256', $_POST['mdp'])) );
         $existe = $verification->fetch();
         if ($existe){
@@ -80,8 +74,8 @@ if ($_POST['inscription']){
 
             <h2> Connexion </h2>
             <!--</br></br></br></br>-->
-            <h3> Identifiant : </h3>
-            <input type="text" name="identifiant" size="40" required id="uname" style=" height : 30px;" >
+            <h3> Adresse e-mail : </h3>
+            <input type="text" name="mail" size="40" required id="uname" style=" height : 30px;" >
 
             <h3> Mot de passe </h3>
             <input type="password" name="mdp" size="40" id="uname" required style=" height : 30px;"> </br></br>
@@ -98,7 +92,7 @@ if ($_POST['inscription']){
     <div class = "Section2">
         <form method="post">
         <h2> S'inscrire </h2>
-        <h3> Identifiant : </h3>
+        <h3> Numéro cMAC : </h3>
         <input type="text" name="identifiant" size="40" id="uname" required style=" height : 5%;" >
         </br>
 
@@ -114,7 +108,7 @@ if ($_POST['inscription']){
         <input type="password" name="confirmation" size="40" id="uname" required style=" height : 5%;" > </br></br>
 
         <input type ="checkbox" id ="CGU" unchecked name ='cgu' required = "required">
-        <label for ="CGU" class = "cgu"> J'accepte les conditions d'utilisations et les mentions légales </label> </br>
+            <label for ="CGU" class = "Cgu"> <a href = "cgu.php" class = "cgu"> J'accepte les conditions d'utilisations </a> </label> </br></br>
 
         <input name ="inscription" type ="submit" style="size : 40px; height: 40px;"/>  </br>
         </form>
@@ -123,12 +117,11 @@ if ($_POST['inscription']){
 
 </div>
 
-<footer>
-    <?php
-    include('footer.php');
-    ?>
-</footer>
 
-</body>
+<?php
+include 'footer.php';
+?>
+
+
 
 </html>
