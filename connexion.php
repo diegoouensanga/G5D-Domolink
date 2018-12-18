@@ -8,6 +8,7 @@
     <title> DomoLink </title>
 </head>
 <?php
+error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 try {
     $bdd = new PDO('mysql:host=127.0.0.1;dbname=Domolink', 'root', 'Azert7Y7uiop77!');
 } catch (Exception $e) {
@@ -97,7 +98,7 @@ if ($_POST['inscription']) {
             <input type="password" name="confirmation" size="40" id="uname" required style=" height : 5%;"> </br></br>
 
             <input type="checkbox" id="CGU" unchecked name='cgu' required="required">
-            <label for="CGU" class="Cgu"> <a href="cgu.php" class="cgu"> J'accepte les conditions d'utilisations </a>
+            <label for="CGU" class="Cgu"> <a class="cgu" onclick="display('cgu')"> J'accepte les conditions d'utilisations </a>
             </label> </br></br>
 
             <input name="inscription" type="submit" style="size : 40px; height: 40px;"/>  </br>
@@ -111,6 +112,9 @@ if ($_POST['inscription']) {
 <?php
 include 'footer.php';
 ?>
+
+<script src = "javascript/infoformationView.js">
+</script>
 
 
 
