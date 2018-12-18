@@ -15,7 +15,7 @@ class Database
     		}
     	}
     }
-    static function execute($command,$array = null)
+    static function execute($command, $array = null)
     {
     	if (gettype($command) != "string" || ($array != null && gettype($array) != "array")) {
     		return null;
@@ -51,4 +51,4 @@ class Database
   function SQLDateFormat($date) {
     return date('Y-m-d', strtotime($date));
   }
-?>
+  
