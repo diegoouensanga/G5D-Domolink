@@ -10,7 +10,7 @@
 <?php
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 try {
-    $bdd = new PDO('mysql:host=127.0.0.1;dbname=Domolink', 'root', 'Azert7Y7uiop77!');
+    $bdd = new PDO('mysql:host=127.0.0.1;dbname=Domolink', 'root', 'alpine');
 } catch (Exception $e) {
     die('Erreur : ' . $e->getMessage());
 }
@@ -24,13 +24,16 @@ include("header.php");
 ?>
 <?php
 if (isset($_POST['connexion'])) {
-    $nbre = Database::execute('SELECT mail,mdp FROM Utilisateurs WHERE mail = :mail AND mdp = :mdp', array('mail' => $_POST['mail'], 'mdp' => hash('sha256', $_POST['mdp'])));
+    $nbre = Database::execute('SELECT id,type FROM Utilisateurs WHERE mail = :mail AND mdp = :mdp', array('mail' => $_POST['mail'], 'mdp' => hash('sha256', $_POST['mdp'])));
     $donnee = $nbre->fetch();
-    if ($donnee) //vérifier l'existance d'un email
+    if ($donnee) //vérifier l'existence d'un email
     {
+        header('Location:/dashBoard.php?piece=VueGenerale',false);
         $_SESSION['id'] = $donnee['id'];
         $_SESSION['type'] = $donnee['type'];
-        echo 'Vous êtes connectés';
+
+
+
     } else {
         echo 'Identifiant / Mot de passe incorrect';
     }
