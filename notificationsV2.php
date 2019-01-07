@@ -14,9 +14,7 @@
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
     }
-
     $reponse = $bdd->query('SELECT *, TIME_FORMAT (	heure, "%Hh%i") AS heure, DATE_FORMAT (date, "%d/%m/%Y") AS date FROM Notifications ORDER BY id DESC');
-
     ?>
     
     <section>
@@ -61,18 +59,15 @@ section {
 	grid-column: 7/9;
 	margin-right: 3%;
 }
-
 h1 {
 	font-family: "Comfortaa-Bold";
 	color: #D52C42;
 	text-align: center;
 }
-
 a {
 	color: white;
 	text-decoration: none;
 }
-
 .buttonA {
     width : 100%;
 	font-family: "Comfortaa-Regular";
@@ -88,11 +83,9 @@ a {
 	cursor: pointer;
 	color: white;
 }
-
 .buttonA:hover {
 	background-color: #D52C42;
 }
-
 .buttonA span {
     width : 100%;
 	cursor: pointer;
@@ -100,7 +93,6 @@ a {
 	position: relative;
 	transition: 0.5s;
 }
-
 .buttonA span:after {
 	content: '\00bb';
 	position: absolute;
@@ -109,11 +101,9 @@ a {
 	right: -10px;
 	transition: 0.5s;
 }
-
 .buttonA:hover span {
 	padding-right: 10px;
 }
-
 .buttonA:hover span:after {
 	opacity: 1;
 	right: 0;
