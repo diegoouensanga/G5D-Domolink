@@ -17,9 +17,9 @@
         <?php
         $req = Database::execute('SELECT id,nom FROM pieces WHERE id_utilisateur = :id_utilisateur',Array('id_utilisateur' => $_SESSION['id']));
         if (isset($_GET['piece']) && $_GET["piece"] == "VueGenerale")
-            echo "<a class='active' href='?piece=VueGenerale'>Vue Générale</a>";
+            echo "<a class='active' href='?piece=VueGenerale'><img draggable='false' src='ressources/home.png' alt='IconeMaison'  width=20vw/> Vue Générale</a>";
         else
-            echo "<a href='?piece=VueGenerale'>Vue Générale</a>";
+            echo "<a href='?piece=VueGenerale'><img draggable='false' src='ressources/home.png' alt='IconeMaison'  width=20vw/> Vue Générale</a>";
         while(isset($req) && $donnees = $req->fetch()) {
             if ($donnees['id'] == $_GET["piece"])
                 echo "<a class='active' href='?piece={$donnees['id']}'>{$donnees['nom']}</a>";
@@ -30,6 +30,10 @@
             echo "<a class='active' href='?piece=AjouterPiece'>+ Ajouter Pièce</a>";
         else
             echo "<a href='?piece=AjouterPiece'>+ Ajouter Pièce</a>";
+
+
+        echo  " <a href='animaux.php?animal=GestionAnimaux'><img draggable='false' src='ressources/animal-print.png' alt='DomoLink' width=20vw/> Animaux</a>";
+
         ?>
     </nav>
     <?php if($_GET['piece'] == 'VueGenerale') : ?>
