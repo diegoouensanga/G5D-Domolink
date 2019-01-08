@@ -107,3 +107,34 @@ footer {
 {
     color : white;
 }
+
+.erreur
+{
+    color : white;
+    grid-column: center ;
+}
+
+.dejaCompte
+{
+    color : white;
+    grid-column: center;
+}
+
+.noMail
+{
+    color : white;
+    grid-column: center;
+}
+
+.tropCourt
+{
+    color : white;
+    grid-column: center;
+}
+
+.wrongMdp
+{
+    color : white;
+    grid-column: center;
+}
+
