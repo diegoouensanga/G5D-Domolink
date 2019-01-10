@@ -138,3 +138,8 @@ footer {
     grid-column: center;
 }
 
+.noConform
+{
+    color : white;
+    grid-column: center;
+}
