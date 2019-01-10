@@ -1,4 +1,5 @@
 footer {
+    height:120px;
     border-top: 1px solid #D52C42;
     color: #D52C42;
     width: calc(100% - 8px);
@@ -9,7 +10,7 @@ footer {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 5px;
-    grid-auto-rows: 100%;
+    background-color: rgba(213, 49, 79, 0.14);
 }
 
 footer h3 {
@@ -31,17 +32,17 @@ footer h3 {
     text-decoration: underline;
 }
 
-.zzz {
+.footer_reseaux {
     grid-column: 2;
     grid-row: 1;
 }
 
-.zzz a {
+.footer_reseaux a {
     color:#0063e3;
     text-decoration: none;
 }
 
-.zzz img {
+.footer_reseaux img {
     vertical-align: middle;
 }
 
