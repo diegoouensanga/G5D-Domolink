@@ -6,13 +6,15 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/dashBoard.css">
-    <link rel="stylesheet" href="css/notificationV2.css">
+    <link rel="stylesheet" href="css/notificationsV2.css">
     <meta name="description" content="Le top de la maison Connectée !">
     <title>DomoLink</title>
 </head>
 <?php include("header.php"); ?>
+<?php include("notificationsV2.php"); ?>
+
 <div class="wrapper">
-    <?php include("notificationV2.php"); ?>
+    
     <nav class = "menu">
         <?php
         $req = Database::execute('SELECT id,nom FROM pieces WHERE id_utilisateur = :id_utilisateur',Array('id_utilisateur' => $_SESSION['id']));
