@@ -19,7 +19,7 @@
 include ("header.php");
 
 
-$reponse = Database::execute('SELECT * FROM Notifications INNER JOIN Utilisateurs ON Notifications.utilisateur_id=Utilisateurs.id ORDER BY :id DESC', Array(
+$reponse = Database::execute('SELECT * FROM Notifications WHERE utilisateur_id=:id ORDER BY id DESC', Array(
     'id' => $_SESSION['id']
 ));
 
