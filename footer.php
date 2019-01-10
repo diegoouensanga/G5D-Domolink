@@ -7,7 +7,7 @@
         E-Mail: <a id="linkMail"
                    href="mailto:<?php echo $donneesAdmin['mail']; ?>"><?php echo $donneesAdmin['mail']; ?></a><br>
     </div>
-    <div class="zzz">
+    <div class="footer_reseaux">
         <h3> Suivez-nous sur les réseaux sociaux </h3>
         <a href=<?php echo $donneesAdmin['twitter']; ?>><img src="../ressources/Twitter.png" draggable="false" width="30vw"
                                                              alt="Twitte">Twitter</a><br>
