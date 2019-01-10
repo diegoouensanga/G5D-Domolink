@@ -38,10 +38,16 @@ if ($_POST['inscription']) {
             $wrongmdp= 'les mots de passe ne correspondent pas, veuillez rééssayer';
         } else if (strlen($_POST['mdp'])<7){
             $noSize='Mot de passe trop court';
-        } else if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL) === false) {
+        } else if (!preg_match('#^(?=.*[a-z])(?!=.*[A-Z])(?=.*[0-9])(?=.*\W).{6,}$#', $_POST['mdp'])) {
+            $noConform= 'Mot de passe non conforme';
+        }else if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL) === false) {
             $noMail= 'adresse email non valide';
         } else {
             $req = Database::execute('INSERT INTO Utilisateurs(mdp,mail,cMAC) VALUES(:mdp,:mail,:cMAC)', array('mail' => $_POST['mail'], 'cMAC' => $_POST['cMAC'], 'mdp' => hash('sha256', $_POST['mdp'])));
+            $req2 = Database::execute('SELECT LAST_INSERT_ID() AS last_id FROM Utilisateurs');
+            $data = $req2->fetch();
+            $_SESSION['id'] = $data['last_id'];
+            $_SESSION['type'] = 0;
             header('Location:/dashBoard.php');
         }
     }
@@ -111,6 +117,13 @@ if ($_POST['inscription']) {
                 }
                 ?>
             </div>
+            <div class = "noConform">
+                <?php if($noConform){
+                    echo $noConform;
+                }
+                ?>
+            </div>
+
             <br>
 
             <h3> Confirmation mot de passe : </h3>
@@ -138,9 +151,7 @@ if ($_POST['inscription']) {
 <?php
 include 'footer.php';
 ?>
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="javascript/connexion.js"></script>
-<script src="javascript/infoformationView.js"></script>-->
+
 
 
 
