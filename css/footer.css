@@ -31,21 +31,24 @@ footer h3 {
     text-decoration: underline;
 }
 
-.footer_social {
+.zzz {
     grid-column: 2;
     grid-row: 1;
 }
 
-.footer_social a {
+.zzz a {
     color:#0063e3;
     text-decoration: none;
 }
 
-.footer_social img {
+.zzz img {
     vertical-align: middle;
 }
 
 .footer_location {
     grid-column: 1;
     grid-row: 1;
+}
+#linkMail {
+    color :#0063e3;
 }

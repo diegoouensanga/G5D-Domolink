@@ -1,3 +1,5 @@
+
+
 .adminWrapper input[type="text"] {
     display: inline-block;
     width: 60%;
@@ -21,7 +23,6 @@
     display: grid;
     grid-template-columns: repeat(2, calc(50% - 15px));
     grid-gap: 15px;
-    height: 100%;
 }
 
 .champs {
@@ -39,12 +40,12 @@
     width: 100%;
 }
 
-.cgu textarea, .mentions textarea {
+.legalColumn textarea {
     resize: none;
-    min-height: 100%;
+    min-height: 300px;
 }
 
-.cgu h1, .mentions h1 {
+.legalColumn h1 {
     text-align: center;
     font-size: 2vw;
     color: #0063e3;
@@ -60,26 +61,28 @@
     margin-left: 2.5%;
 }
 
-#customScroll::-webkit-scrollbar-track {
-    background-color: transparent;
+.legalColumn {
+    display: inline-block;
+    width:49vw;
+    margin-left: auto;
+    margin-right:auto;
 }
 
-.wrapper {
-    margin-top: 2%;
-    display: grid;
-    grid-template-columns: repeat(2, calc(50% - 5px));
-    grid-auto-rows: 100%;
-    grid-gap: 5px;
+#labelLogo {
+    display: inline;
 }
 
-.cgu {
-    grid-row: 1;
-    grid-column: 1;
-    height: 100%;
+#inpuLogo {
+    width: 45%;
 }
 
-.mentions {
-    grid-row: 1;
-    grid-column: 2;
-    height: 100%;
+#erreurText {
+    width: 35%;
+    color: red;
+}
+
+.adminButton{
+    width:40%;
+    margin-left:30%;
+    margin-top: 1%;
 }
