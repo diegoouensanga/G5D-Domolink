@@ -6,27 +6,23 @@
 <link rel="stylesheet" href="css/cssGeneral.css" />
 <link rel="stylesheet" href="css/header.css" />
 <link rel="stylesheet" href="css/footer.css" />
+<link rel="stylesheet" href="css/Notifications.css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa" />
 </head>
 
 <body>
 
 
 <?php
-error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
-try {
-    $bdd = new PDO('mysql:host=localhost;dbname=DomolinkVP', 'root', 'root');
-} catch (Exception $e) {
-    die('Erreur : ' . $e->getMessage());
-}
 
-$result = $bdd->query('SHOW DATABASES');
 
 include ("header.php");
 
 
-$reponse = Database::execute('SELECT * FROM Notifications WHERE utilisateur_id=:id ORDER BY id DESC', Array(
+$reponse = Database::execute('SELECT * FROM Notifications INNER JOIN Utilisateurs ON Notifications.utilisateur_id=Utilisateurs.id ORDER BY :id DESC', Array(
     'id' => $_SESSION['id']
 ));
+
 
 ?>
 
@@ -87,44 +83,3 @@ $reponse = Database::execute('SELECT * FROM Notifications WHERE utilisateur_id=:
 </html>
 
 
-
-<style>
-section { /* le quadrillage externe */
-	border: 3px solid #D52C42; /* Bordure du tableau double et bleue */
-	margin: auto; /* Centrer horizontalement le tableau */
-	border-radius: 20px;
-}
-
-h1 {
-	font-family: "Comfortaa-Regular", serif;
-	color: #D52C42;
-	text-align: center;
-}
-
-table {
-	margin: auto;
-	margin-bottom: 10px;
-	border-collapse: collapse;
-}
-
-th { /* Les cellules d'en-têtes */
-	border: 2px solid #D52C42;
-	color: white;
-	font-size: 1.2em;
-	font-face: "Comfortaa-Bold";
-	background-color: #D52C42;
-}
-
-td { /* Les cellules normales */
-	border: 2px solid #D52C42;
-	font-family: "Comfortaa-Regular";
-	font-size: 0.95em;
-	background-color: #FEE8EE;
-	padding: 8px;
-	/* Remplissage de 8 pixels pour éviter que le texte touche les bordures */
-	vertical-align: middle;
-	/* Centrer le contenu des cellules verticalement */
-	text-align: center;
-	/* Centrer le contenu des cellules horizontalement */
-}
-</style>
