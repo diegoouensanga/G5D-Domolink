@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
     <link rel="shortcut icon" href="ressources/favicon.png"/>
     <link rel="stylesheet" href="css/cssGeneral.css">
     <link rel="stylesheet" href="css/header.css">
@@ -19,6 +20,7 @@ switch ($_SESSION['type']) {
         include("societe.php");
         break;
     default :
-        header("Location:/dashBoard.php?piece=VueGenerale");
+        header("Location: dashBoard.php?piece=VueGenerale");
+        die();
 }
 include("footer.php");

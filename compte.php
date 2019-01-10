@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
     <link rel="shortcut icon" href="ressources/favicon.png"/>
     <link rel="stylesheet" href="css/cssGeneral.css">
     <link rel="stylesheet" href="css/header.css">
@@ -11,7 +12,7 @@
 </head>
 <?php
 include("header.php");
-if ($_POST['infoSubmit']) {
+if (!empty($_POST['infoSubmit'])) {
     $array = Array(
         'mail' => $_POST['mail'],
         'nom' => $_POST['nom'],
@@ -34,28 +35,29 @@ if ($_POST['infoSubmit']) {
     } else {
         Database::execute('UPDATE Utilisateurs SET mail=:mail , mail=:mail ,nom =:nom , prenom=:prenom , telephone=:telephone, pays =:pays, postal=:postal, ville=:ville , rue=:rue, numeroRue=:numeroRue, autres=:autres WHERE id=:id ', $array);
     }
-} else if ($_POST['mdpChange']) {
+} else if (!empty($_POST['mdpChange'])){
     $req = Database::execute('SELECT mdp FROM Utilisateurs WHERE id=:id', Array('id' => $_SESSION['id']));
     $donnees = $req->fetch();
     if (hash("sha256", $_POST['actualMDP']) == $donnees['mdp'])
         Database::execute('UPDATE Utilisateurs SET mdp=:mdp WHERE id=:id ', Array('mdp' => hash("sha256", $_POST['newMDP']), 'id' => $_SESSION['id']));
     else
         echo "<script>alert('Le pseudo actuel ne correspond pas.')</script>";
-} else if ($_POST['accountDelete']) {
+} else if (!empty($_POST['accountDelete'])) {
     Database::execute('DELETE FROM Utilisateurs WHERE id = :id', Array('id' => $_SESSION['id']));
     session_destroy();
-    header("Location:/connexion.php");
+    header("Location: connexion.php");
+    die();
 }
 $req = Database::execute('SELECT naissance,nom,prenom,pays,mail,mdp,ville,telephone,postal,rue,numeroRue,autres FROM Utilisateurs WHERE id=:id', Array('id' => $_SESSION['id']));
 $donnees = $req->fetch();
 ?>
-<form autocomplete='off' action="compte.php?action=<?php echo $_GET['action']; ?>" method='POST'>
+<form autocomplete='off' name="infoForm" id="infoForm" action="compte.php?action=<?php echo $_GET['action']; ?>" method='POST'>
     <div class="accountWrapper">
         <div class="menu">
             <?php
             $actionsList = Array('infos' => 'Informations personnelles', 'changeMDP' => 'Modifier le mot de passe', 'delete' => 'Supprimer le compte', 'logout' => 'Déconnexion');
             foreach ($actionsList as $key => $value) {
-                if (isset($_GET['action']) && $_GET["action"] == $key)
+                if (!empty($_GET['action']) && $_GET["action"] == $key)
                     echo "<a class='active' href='?action={$key}'>{$value}</a>";
                 else
                     echo "<a href='?action={$key}'>{$value}</a>";
@@ -68,7 +70,7 @@ $donnees = $req->fetch();
                 <br>
                 <div class="title2">Adresse e-mail :</div>
                 <br>
-                <input type='text' name='mail' maxlength='50' placeholder="jean.dupont@gmail.com"
+                <input type='text' name='mail' id="mail" maxlength='50' placeholder="jean.dupont@gmail.com"
                        value=<?php echo "'" . $donnees['mail'] . "'"; ?>/><br>
                 <div class="title2">Nom :</div>
                 <br>
@@ -79,10 +81,10 @@ $donnees = $req->fetch();
                 <input type='text' name='prenom' maxlength='15' placeholder="Jean"
                        value=<?php echo "'" . $donnees['prenom'] . "'"; ?>/><br>
                 <label class="title2">Date de Naissance :</label><br>
-                <input type='text' name='naissance' maxlength='10' placeholder="28-09-1993" onclick="deleteDate()"
+                <input type='text' name='naissance' maxlength='10' placeholder="28-09-1993"
                        id="naissance" value=<?php echo "'" . humanDateFormat($donnees['naissance']) . "'"; ?>/><br>
                 <label class="title2">Numéro de téléphone :</label><br>
-                <input type='text' name='telephone' maxlength='10' placeholder="0636303630" oninput="checkNum(this)"
+                <input type='text' name='telephone' maxlength='10' placeholder="0636303630" id="champTel"
                        value=<?php echo "'" . $donnees['telephone'] . "'"; ?>/><br>
             </div>
             <div class="midWrapper">
@@ -92,7 +94,7 @@ $donnees = $req->fetch();
                 <input type='text' name='pays' maxlength='15' placeholder="France"
                        value=<?php echo "'" . $donnees['pays'] . "'"; ?>/><br>
                 <label class="title2">Code Postal :</label><br>
-                <input type='text' name='postal' maxlength='5' placeholder="75017" oninput="checkNum(this)"
+                <input type='text' name='postal' maxlength='5' placeholder="75017" id="champPostal"
                        value=<?php echo "'" . $donnees['postal'] . "'"; ?>/><br>
                 <label class="title2">Ville :</label><br>
                 <input type='text' name='ville' maxlength='15' placeholder="Paris"
@@ -101,12 +103,13 @@ $donnees = $req->fetch();
                 <input type='text' name='rue' maxlength='120' placeholder="Rue de la paix"
                        value=<?php echo "'" . $donnees['rue'] . "'"; ?>/><br>
                 <label class="title2">Numéro de rue :</label><br>
-                <input type='text' name='numeroRue' maxlength='6' placeholder="15" oninput="checkNum(this)"
+                <input type='text' name='numeroRue' maxlength='6' placeholder="15" id="champRue"
                        value=<?php echo "'" . $donnees['numeroRue'] . "'"; ?>/><br>
                 <label class="title2">Autres informations :</label><br>
                 <input type='text' name='autres' maxlength='100' placeholder="2 ème étage, au fond à droite."
                        value=<?php echo "'" . $donnees['autres'] . "'"; ?>/><br>
-                <input class='button blueButton' style="width:50%;margin-left:25%;" type='submit' name="infoSubmit"
+                <input type='hidden' name="infoSubmit" value="ok" />
+                <input class='button blueButton' type='submit' name="infoSubmit" id="infoSubmit"
                        value='Sauvegarder'>
             </div>
         <?php elseif ($_GET["action"] == "changeMDP"): ?>
@@ -114,30 +117,30 @@ $donnees = $req->fetch();
                 <div class='title'>Changer de Mot de Passe</div>
                 <br><br>
                 <label class="title2">Mot de passe actuel :</label><br><br>
-                <input type='password' name='actualMDP' id='actualMDP' maxlength='15'><br><br>
+                <input type='password' name='actualMDP' id='actualMDP' maxlength='15' autocomplete="off"><br><br>
                 <label class="title2">Nouveau mot de passe :</label><br><br>
                 <input type='password' name='newMDP' id="newMDP" maxlength='15'><br><br>
                 <label class="title2">Confirmation du mot de passe :</label><br><br>
                 <input type='password' name='confNewMDP' id="confNewMDP" maxlength='15'><br><br>
-                <input class='button blueButton' style="width:50%;margin-left:25%" type='submit' value='Valider'
+                <input type='hidden' name="mdpChange" value="ok" />
+                <input class='button blueButton' type='submit' value='Valider'
                        name="mdpChange" id="mdpChange">
             </div>
         <?php elseif ($_GET["action"] == "delete"): ?>
             <div class="midWrapper">
-                <form autocomplete='off' action='compte.php' method='post'>
-                    <div class='title' style="color:#EF0A0A;">Supprimer le compte</div>
+                    <div class='title' id="labelDeleteAcc" >Supprimer le compte</div>
                     <br><br>
-                    <label class="title2" style="width:100%; text-align:center; color:#EF0A0A;">Entrez votre adresse
+                    <label class="title2" id="labelEnterMail">Entrez votre adresse
                         E-Mail : </label><br><br>
-                    <input type='text' name='mail' id="mail" maxlength='15'><br><br>
-                    <input class='button redButton' style="width:50%;margin-left:25%;" name="accountDelete"
-                           id='accountDelete' type='submit' value='Supprimer'>
-                </form>
+                    <input type='text' name='mail' id="mail" maxlength='50'><br><br>
+                    <input type='hidden' name="accountDelete" value="ok" />
+                    <input class='button redButton'
+                           id='accountDelete' type='button' value='Supprimer'>
             </div>
         <?php elseif ($_GET["action"] == "logout"): ?>
             <?php
             session_destroy();
-            echo "<script> window.location.replace('connexion.php') </script>"
+            header('Location: connexion.php')
             ?>
         <?php endif; ?>
         <div class="rightWrapper">
@@ -145,6 +148,7 @@ $donnees = $req->fetch();
         </div>
     </div>
 </form>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="javascript/compte.js"></script>
+<script src="libs/jquery-3.3.1.js"></script>
+<script src="javascript/generalJS.js"></script>
+<script data-my_var_1=<?php echo $donnees['mail']; ?> src="javascript/compte.js"></script>
 <?php include("footer.php"); ?>

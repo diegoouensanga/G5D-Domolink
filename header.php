@@ -1,10 +1,12 @@
 <?php
-require_once("fonctions.php");
+include("fonctions.php");
+define('URL', 'https://domolink.ddns.net/');
 session_start();
-if (empty($_SESSION['id']) && !($_SERVER['REQUEST_URI'] == "/connexion.php")) {
-    header("Location:/connexion.php");
+if (empty($_SESSION['id']) && !(strpos($_SERVER['REQUEST_URI'],"connexion.php"))) {
+    header("Location: connexion.php");
+    die();
 } else {
-    $req2 = Database::execute('SELECT nom,societe,telephone,slogan,adresse,mail,facebook,twitter,instagram FROM administration', null);
+    $req2 = Database::execute('SELECT nom,societe,telephone,slogan,adresse,mail,facebook,twitter,instagram FROM Administration', null);
     $donneesAdmin = $req2->fetch();
 }
 ?>
@@ -12,7 +14,7 @@ if (empty($_SESSION['id']) && !($_SERVER['REQUEST_URI'] == "/connexion.php")) {
 <body>
 <header>
     <div class="topIcon">
-        <a href="dashBoard.php?piece=VueGenerale" style="text-decoration: none;">
+        <a href="dashBoard.php?piece=VueGenerale">
             <img draggable="false" src="ressources/Logo.png" alt="DomoLink" width=200vw/>
         </a>
         <div class="slogan"><br><em class="slogan compagnie"><?php echo $donneesAdmin['nom']; ?></em>
