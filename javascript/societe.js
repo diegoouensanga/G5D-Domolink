@@ -1,4 +1,13 @@
 let logoOk = true;
+//oninput="this.value=this.value.replace(/(?![0-9])./gmi,'')"
+
+document.addEventListener('DOMContentLoaded', function () {
+    if (document.getElementById("telephone")) {
+        document.getElementById("telephone").oninput = function (){
+            checkNum(document.querySelector("#telephone"));
+        }
+    }
+});
 $(document).ready(function(){
     $('#sauvegarder').click(function(){
         return logoOk;
@@ -23,3 +32,4 @@ $(document).ready(function(){
         }
     });
 });
+
