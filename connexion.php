@@ -4,8 +4,6 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
     <link rel="stylesheet" href="css/cssGeneral.css"/>
     <link rel="stylesheet" href="css/connexion.css"/>
-    <link rel="stylesheet" href="css/header.css"/>
-    <link rel="stylesheet" href="css/footer.css"/>
     <title> DomoLink </title>
 </head>
 <?php
@@ -18,7 +16,7 @@ if (isset($_POST['connexion'])) {
     {
         $_SESSION['id'] = $donnee['id'];
         $_SESSION['type'] = $donnee['type'];
-        header('Location:/dashBoard.php');
+        header('Location: dashBoard.php?piece=VueGenerale');
     } else {
         $erreur = 'Identifiant / Mot de passe incorrect !';
     }
@@ -47,7 +45,7 @@ if (isset($_POST['inscription'])) {
             $data = $req2->fetch();
             $_SESSION['id'] = $data['last_id'];
             $_SESSION['type'] = 0;
-            header('Location:/dashBoard.php');
+            header('Location: dashBoard.php?piece=VueGenerale');
         }
     }
 }
@@ -68,11 +66,11 @@ if (isset($_POST['inscription'])) {
                 </div>
                 <!--</br></br></br></br>-->
                 <h3> Adresse e-mail : </h3>
-                <input type="text" name="mail" size="40" required id="mailcon">
+                <input class="champ" type="text" name="mail" required id="mailcon">
 
                 <h3> Mot de passe </h3>
-                <input type="password" name="mdp" size="40" id="mdpcon" required > <br><br>
-                <input class="button conButton" name="connexion" type="submit" id="connexion" /> <br> <br>
+                <input class="champ" type="password" name="mdp" id="mdpcon" required > <br><br>
+                <input class="button conButton" name="connexion" type="submit" id="connexion" value="Connexion" /> <br> <br>
             </form>
 
             <a class="oubli" href="oublie.php"> Mot de passe oublié </a>
@@ -96,11 +94,11 @@ if (isset($_POST['inscription'])) {
             </div>
 
             <h3> Numéro cMAC : </h3>
-            <input type="text" name="cMAC" size="40" id="cMAC" required >
+            <input class="champ" type="text" name="cMAC" id="cMAC" required >
             <br>
 
             <h3> E-mail : </h3>
-            <input type="text" name="mail" size="40" id="mail" required ><br>
+            <input class="champ" type="text" name="mail" id="mail" required ><br>
             <div class="errorMsg">
                 <?php if (isset($noMail)) {
                     echo $noMail;
@@ -110,7 +108,7 @@ if (isset($_POST['inscription'])) {
             <br>
 
             <h3> Mot de passe : </h3>
-            <input type="password" name="mdp" size="40" id="mdp" required ><br>
+            <input class="champ" type="password" name="mdp" id="mdp" required ><br>
             <div class="errorMsg">
                 <?php if (isset($noSize)) {
                     echo $noSize;
@@ -124,7 +122,7 @@ if (isset($_POST['inscription'])) {
             <br>
 
             <h3> Confirmation mot de passe : </h3>
-            <input type="password" name="confirmation" size="40" id="confirmation" required
+            <input class="champ" type="password" name="confirmation" id="confirmation" required
                    > <br>
             <div >
                 <?php if (isset($wrongmdp)) {
@@ -139,7 +137,7 @@ if (isset($_POST['inscription'])) {
                     d'utilisations </a>
             </label> <br><br>
             <input type="hidden" name="inscription" value="hock">
-            <input class="button conButton" name="inscription" id="inscription" type="submit" />  <br>
+            <input class="button conButton" name="inscription" id="inscription" type="submit" value="Inscription" />  <br>
         </form>
 
     </div>
