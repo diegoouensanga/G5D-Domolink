@@ -1,12 +1,5 @@
-
-em
+.Section h2, .Section h3
 {
-    color: red;
-}
-
-h2, h3
-{
-    color : white;
     position: center ;
 }
 
@@ -17,6 +10,7 @@ h2, h3
     grid-gap: 5px;
     grid-auto-rows: 100%;
     font-family: "Comfortaa-Bold", serif;
+    color : white;
 }
 
 .Section1
@@ -26,8 +20,8 @@ h2, h3
     background: #AD031A;
     border: 1px solid #AD031A;
     text-align: center;
-    //font-size: 1wvm;
     position: relative;
+    padding-bottom: 10px;
 }
 
 .sousection1
@@ -45,38 +39,17 @@ h2, h3
     border: 1px solid #AD031A;
     text-align: center ;
     font-size: 13px;
+    padding-bottom: 10px;
 }
 
 .cgu
 {
-    color : white;
+
     text-decoration: underline;
 }
 
-
-.oublié
-{
+.oubli{
     color: white;
-}
-
-
-p
-{
-    color : black;
-}
-
-em
-{
-    color : red;
-}
-footer {
-    border-top : 1px solid #D52C42;
-    color :#D52C42;
-    width: calc(100% - 8px);
-    position: absolute;
-    left: 0;
-    padding: 4px;
-    font-size : 1vw;
 }
 
 .grille
@@ -104,43 +77,21 @@ footer {
     grid-row: 1;
 }
 
-.cgu
-{
-    color : white;
+.champ{
+    height : 5%;
 }
 
-.erreur
-{
-    color : white;
-    grid-column: center ;
+
+.conButton{
+    height:40px;
+    background-color: white;
+    color : black;
+    width : 60px;
+    padding-bottom: 20px;
+    padding-top: 12px;
 }
 
-.dejaCompte
-{
-    color : white;
-    grid-column: center;
-}
 
-.noMail
-{
-    color : white;
-    grid-column: center;
-}
-
-.tropCourt
-{
-    color : white;
-    grid-column: center;
-}
-
-.wrongMdp
-{
-    color : white;
-    grid-column: center;
-}
-
-.noConform
-{
-    color : white;
-    grid-column: center;
+.conButton:hover{
+    background-color: lightgray;
 }
