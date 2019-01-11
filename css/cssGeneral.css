@@ -37,6 +37,13 @@ body {
   font-weight:bold;
   width: 100%;
 }
+.menu .active2{
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  color:#EF0A0A;
+  font-weight:bold;
+  width: 100%;
+}
 .menu a:hover {
   background-color: #96BEFF;
 }

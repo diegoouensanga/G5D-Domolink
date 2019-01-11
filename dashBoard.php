@@ -31,6 +31,8 @@
             echo "<a class='active' href='?piece=AjouterPiece'>+ Ajouter Pièce</a>";
         else
             echo "<a href='?piece=AjouterPiece'>+ Ajouter Pièce</a>";
+
+         echo "<a href='animaux.php?animal=GestionAnimaux'>Animaux</a>"
         ?>
     </nav>
     <?php if ($_GET['piece'] == 'VueGenerale') : ?>
