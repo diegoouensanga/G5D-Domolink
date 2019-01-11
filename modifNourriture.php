@@ -2,7 +2,7 @@
 include("fonctions.php");
 session_start();
 if (!empty($_POST['heureNourriture'])){
-    $post =  htmlspecialchars($_POST['nomPiece']);
+    $post =  htmlspecialchars($_POST['heureNourriture']);
     $req = Database::execute('INSERT INTO nourriture(heure,id_utilisateur) VALUES(:heure,:id_utilisateur)',Array(
         'heure' => $post,
         'id_utilisateur' => $_SESSION['id']

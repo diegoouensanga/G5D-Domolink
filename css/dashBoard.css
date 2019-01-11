@@ -1,6 +1,6 @@
 .wrapper {
     display: grid;
-    grid-template-columns: repeat(8, calc(12.5% - 5px));
+    grid-template-columns: repeat(4, calc(12.5% - 5px));
     grid-gap: 5px;
 }
 
