@@ -14,7 +14,7 @@ if (isset($_POST['connexion'])) {
     $nbre = Database::execute('SELECT id,type FROM Utilisateurs WHERE mail = :mail AND mdp = :mdp', array('mail' => $_POST['mail'], 'mdp' => hash('sha256', $_POST['mdp'])));
     $donnee = $nbre->fetch();
     $erreur = "";
-    if ($donnee) //vérifier l'existance d'un email et du mot de passe correspondant
+    if (isset($donnee)) //vérifier l'existance d'un email et du mot de passe correspondant
     {
         $_SESSION['id'] = $donnee['id'];
         $_SESSION['type'] = $donnee['type'];
@@ -23,7 +23,7 @@ if (isset($_POST['connexion'])) {
         $erreur = 'Identifiant / Mot de passe incorrect !';
     }
 }
-if ($_POST['inscription']) {
+if (isset($_POST['inscription'])) {
     if (!empty($_POST['cMAC']) && !empty($_POST['cgu']) && !empty($_POST['mail']) && !empty($_POST['mdp']) && !empty($_POST['confirmation'])) {
         $testmail = Database::execute('SELECT id,type FROM Utilisateurs WHERE mail = :mail', array('mail' => $_POST['mail']));
         $existeM = $testmail->fetch();
