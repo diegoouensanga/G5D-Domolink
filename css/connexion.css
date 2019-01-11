@@ -8,7 +8,6 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 5px;
-    grid-auto-rows: 100%;
     font-family: "Comfortaa-Bold", serif;
     color : white;
 }
@@ -26,7 +25,8 @@
 
 .sousection1
 {
-    position: absolute; top :50%;
+    position: absolute;
+    top :50%;
     transform: translateY(-50%);
     width: 100%;
 }
@@ -79,14 +79,15 @@
 
 .champ{
     height : 5%;
+    width:40%;
 }
 
 
 .conButton{
     height:40px;
     background-color: white;
-    color : black;
-    width : 60px;
+    color : #AD031A;
+    width : 20%;
     padding-bottom: 20px;
     padding-top: 12px;
 }
