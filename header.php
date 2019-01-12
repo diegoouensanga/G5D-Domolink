@@ -40,9 +40,9 @@ if (empty($_SESSION['id']) && !(strpos($_SERVER['REQUEST_URI'],"connexion.php"))
                 </div>
             <?php endif; ?>
             <div class="menuItem">
-                <a href="compte.php?action=infos"><img draggable="false" src="ressources/compte.png"
+                <a href="/compte.php?action=infos"><img draggable="false" src="ressources/compte.png"
                                                        alt="Icône Compte" width=60%/></a>
-                <a href="compte.php?action=infos" class="caption">Compte</a>
+                <a href="/compte.php?action=infos" class="caption">Compte</a>
             </div>
             <div class="menuItem">
                 <a href="/routers/partie_aide/router.php"><img draggable="false" src="ressources/aide.png" alt="DomoLink" width=60%/></a>
