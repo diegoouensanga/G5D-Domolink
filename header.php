@@ -14,7 +14,7 @@ if (empty($_SESSION['id']) && !(strpos($_SERVER['REQUEST_URI'],"connexion.php"))
 <body>
 <header>
     <div class="topIcon">
-        <a href="dashBoard.php?piece=VueGenerale">
+        <a href="/dashBoard.php?piece=VueGenerale">
             <img draggable="false" src="/ressources/Logo.png" alt="DomoLink" width=200vw/>
         </a>
         <div class="slogan"><br><em class="slogan compagnie"><?php echo $donneesAdmin['nom']; ?></em>
