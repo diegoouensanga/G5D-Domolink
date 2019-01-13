@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="/ressources/favicon.png"/>
-    <link rel="stylesheet" href="/views/partie_aide/CSS/header.css">
-    <link rel="stylesheet" href="/views/partie_aide/CSS/footer.css">
-    <link rel="stylesheet" href="/css/notificationV2.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/views/partie_aide/CSS/style1.css">
     <meta name="description" content="Le top de la maison Connectée !">
     <title>DomoLink</title>
