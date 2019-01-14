@@ -27,12 +27,12 @@
         <p> <form method="post" action="router.php?action=ajouter_formulaire">
             <label>
                 Numéro de série de l'équipement : <input type="number" name="serie">
-            </label> <br>
+            </label> <br> <br>
             <label>
                 Cause de la panne : <br>
-                <input type="text" name="message" required>
+                <input type="text" name="message" size="50" style="height:55px;" required>
 
-            </label> <br>
+            </label> <br> <br>
             <input type="submit" VALUE="Envoyer">
 
         </p>

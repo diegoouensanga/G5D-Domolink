@@ -39,7 +39,7 @@
         <table>
             <thead>
             <tr>
-                <th>Expediteur</th>
+                <th>Destinataire</th>
                 <th>Objet</th>
                 <th>Message</th>
                 <th>Date</th>

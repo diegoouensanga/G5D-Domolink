@@ -42,7 +42,7 @@
         </label><br><br>
         <label>
             Message : <br>
-            <input type="text" name="message" required>
+            <input type="text" name="message" size="50" style="height:55px;" required>
 
         </label> <br>
         <input type="submit" VALUE="Envoyer">
