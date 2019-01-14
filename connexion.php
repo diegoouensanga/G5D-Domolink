@@ -1,9 +1,10 @@
 <!DOCTYPE html >
 <head>
     <meta charset="utf-8"> <!-- UTF-8 permet d'obtenir tous les caractères chinois, arabes, accents... -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
-    <link rel="stylesheet" href="css/cssGeneral.css"/>
-    <link rel="stylesheet" href="css/connexion.css"/>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self';">
+    <link rel="shortcut icon" href="ressources/favicon.png"/>
+    <link rel="stylesheet" href="/css/cssGeneral.css"/>
+    <link rel="stylesheet" href="/css/connexion.css"/>
     <title> DomoLink </title>
 </head>
 <?php
@@ -72,7 +73,7 @@ if (isset($_POST['inscription'])) {
                 <br>
             </form>
 
-            <a class="oubli" href="oublie.php"> Mot de passe oublié </a>
+            <a class="oubli" href="/oublie.php"> Mot de passe oublié </a>
 
         </div>
 
@@ -131,10 +132,9 @@ if (isset($_POST['inscription'])) {
             </div>
             <br>
 
-            <input type="checkbox" id="cgu" unchecked name='cgu' required="required">
-            <label for="CGU" class="Cgu"> <a class="cgu" id="cgu"> J'accepte les conditions
+            <input type="checkbox" id="cgu" unchecked name='cgu' required/><a class="cgu" id="cguLink">J'accepte les conditions
                     d'utilisations </a>
-            </label> <br><br>
+            <br><br>
             <input type="hidden" name="inscription" value="hock">
             <input class="button conButton" name="inscription" id="inscription" type="submit" value="Inscription"/> <br>
         </form>
@@ -142,7 +142,7 @@ if (isset($_POST['inscription'])) {
     </div>
 
 </div>
-<script src="javascript/informationView.js"></script>
-<script src="javascript/generalJS.js"></script>
-<script src="javascript/connexion.js"></script>
+<script src="/javascript/informationView.js"></script>
+<script src="/javascript/generalJS.js"></script>
+<script src="/javascript/connexion.js"></script>
 <?php include 'footer.php'; ?>
