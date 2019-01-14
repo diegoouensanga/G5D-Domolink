@@ -29,8 +29,8 @@
             </label> <br> <br>
             <label>
                 Vos disponibilités :
-                <input type="text" name="dispo" height="20" required>
-            </label> <br>
+                <input type="text" name="dispo" size="50" style="height:55px;" required>
+            </label> <br> <br>
 
             <a href="router.php?action=conf_rdv"> Envoyer</a>
         </p>

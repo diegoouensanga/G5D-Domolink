@@ -96,7 +96,7 @@ function messageRecu1()
 function messageEnvoye1(){
     $db = dbConnect();
     $idUtilsateur = $_SESSION['id'];
-    $message_envoye = $db->query("SELECT * FROM Messages WHERE id_envoyeur = $$idUtilsateur ORDER BY date DESC ");
+    $message_envoye = $db->query("SELECT * FROM Messages WHERE id_envoyeur = $idUtilsateur ORDER BY date DESC ");
     while ($donnees = $message_envoye->fetch()) {
         ?>
         <tr>
