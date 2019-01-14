@@ -3,7 +3,7 @@ function display(strArg) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById("cgu").onclick = function (){
+    document.getElementById("cguLink").onclick = function (){
         display("cgu");
     }
     document.getElementById("mentions").onclick = function (){
