@@ -2,7 +2,7 @@
 
 function dbConnect(){
     try {
-        $db = new PDO('mysql:host=localhost;dbname=Domolink;charset=utf8', 'root', 'root');
+        $db = new PDO('mysql:host=localhost;dbname=Domolink;charset=utf8', 'root', 'alpine');
         return $db;
 
     }
