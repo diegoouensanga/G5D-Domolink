@@ -27,6 +27,7 @@
     <div class="corps">
         <h1>Messagerie</h1>
         <p>
+            
             Votre messageb n'a pas été distribué, veuillez réesssayer.<br>
 
         </p>
