@@ -76,7 +76,9 @@ function messageRecu1()
         ?>
         <tr>
         <td>
-            <?= $donnees['id_expediteur'] ?>
+            <?= $mail = $donnees['id_expediteur'];
+            $req = $db->query("SELECT mail FROM Utilisateurs WHERE id = $mail");
+            echo $req; ?> ?>
         </td>
         <td>
             <?= $donnees['titre'] ?>
@@ -101,7 +103,10 @@ function messageEnvoye1(){
         ?>
         <tr>
         <td>
-            <?= $donnees['id_receveur'] ?>
+            <?=
+            $mail = $donnees['id_receveur'];
+            $req = $db->query("SELECT mail FROM Utilisateurs WHERE id = $mail");
+            echo $req; ?>
         </td>
         <td>
             <?= $donnees['titre'] ?>
