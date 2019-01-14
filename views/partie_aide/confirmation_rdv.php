@@ -5,7 +5,7 @@
     <link rel="shortcut icon" href="/ressources/favicon.png"/>
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/footer.css">
-    <link rel="stylesheet" href="/views/partie_aide/CSS/style1.css">
+    <link rel="stylesheet" href="/css/style1.css">
     <meta name="description" content="Le top de la maison Connectée !">
     <title>DomoLink</title>
 </head>
