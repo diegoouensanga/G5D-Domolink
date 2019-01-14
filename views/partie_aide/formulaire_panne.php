@@ -33,7 +33,7 @@
                 <input type="text" name="message" size="50" style="height:55px;" required>
 
             </label> <br> <br>
-            <input type="submit" VALUE="Envoyer">
+            <input type="submit" class="button" VALUE="Envoyer">
 
         </p>
         </form>

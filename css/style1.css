@@ -65,6 +65,7 @@
     box-shadow: 0 3px #999;
     background-color: #0063e3;
 }
+
 .button:active {
     box-shadow: 0 2px #666;
     transform: translateY(1px);
