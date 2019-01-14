@@ -15,7 +15,7 @@ function dbConnect(){
 function insertPannes($serie, $message){ //Insert dans la base de donnée les nouvelles données dans la base de données
     $db = dbconnect();
     $utilisateurId = $_SESSION['id'];
-    $equipementId = $db->query('SELECT id from Equipements WHERE serie =$serie');
+    $equipementId = $db->query("SELECT id from Equipements WHERE serie =$serie");
     $req = $db->prepare("INSERT INTO Pannes(date, serie, equipement_id, message, etat, client_id ) VALUES (:DATE, $serie, $equipementId, $message, 1, $utilisateurId)");
     $req->execute();
     $req->closeCursor();
@@ -45,7 +45,7 @@ function verifSerie($serie){ //vérifie que le numéro de série existe et appar
 
 function verifMail($destinataire){
     $db = dbConnect();
-    $confmail = $db->query('SELECT id FROM Utilisateurs WHERE mail = $destinataire');
+    $confmail = $db->query("SELECT id FROM Utilisateurs WHERE mail = $destinataire");
     if ($confmail==null){
         return false;
     }
@@ -54,7 +54,7 @@ function verifMail($destinataire){
 
 function getIdReceveur($destinataire){
     $db = dbConnect();
-    $id_receveur = $db->query('SELECT id FROM Utilisateurs WHERE mail =$destinataire');
+    $id_receveur = $db->query("SELECT id FROM Utilisateurs WHERE mail =$destinataire");
     return $id_receveur;
 }
 
@@ -62,7 +62,7 @@ function insertMessage($destinataire, $message, $titre){
     $db = dbConnect();
     $envoyeur_id = $_SESSION['id'];
     $receveur_id = getIdReceveur($destinataire);
-    $req = $db->prepare('INSERT INTO Messages(id_envoyeur, id_receveur, date, titre, message) VALUES($envoyeur_id, $receveur_id, DATE , $titre, $message)');
+    $req = $db->prepare("INSERT INTO Messages(id_envoyeur, id_receveur, date, titre, message) VALUES($envoyeur_id, $receveur_id, DATE , $titre, $message)");
     $req->execute();
     $req->closeCursor();
 }
@@ -71,7 +71,7 @@ function messageRecu1()
 {
     $db = dbConnect();
     $idUtilsateur = $_SESSION['id'];
-    $message_recu = $db->query('SELECT * FROM Messages WHERE id_receveur = $idUtilsateur ORDER BY date DESC ');
+    $message_recu = $db->query("SELECT * FROM Messages WHERE id_receveur = $idUtilsateur ORDER BY date DESC ");
     while ($donnees = $message_recu->fetch()) {
         ?>
         <tr>
@@ -96,7 +96,7 @@ function messageRecu1()
 function messageEnvoye1(){
     $db = dbConnect();
     $idUtilsateur = $_SESSION['id'];
-    $message_envoye = $db->query('SELECT * FROM Messages WHERE id_envoyeur = $idUtilisateur ORDER BY date DESC ');
+    $message_envoye = $db->query("SELECT * FROM Messages WHERE id_envoyeur = $$idUtilsateur ORDER BY date DESC ");
     while ($donnees = $message_envoye->fetch()) {
         ?>
         <tr>

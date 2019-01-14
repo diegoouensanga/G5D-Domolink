@@ -79,11 +79,11 @@ function demande_rdv(){
 }
 
 function messageEnvoye(){
-    require messageEnvoye1();
+    messageEnvoye1();
 }
 
 function messageRecu(){
-    require messageRecu1();
+    messageRecu1();
 }
 
 
