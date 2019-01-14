@@ -9,9 +9,13 @@
     <title>DomoLink</title>
 </head>
 <?php include("../../header.php"); ?>
+<link rel="stylesheet" href="/views/partie_aide/CSS/style.css">
 
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa" />
+
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa" />
 <div class = "wrapper">
+    <div class ='header'>
+    </div>
     <div class="menu">
         <nav>
             <p><a href="router.php?">Les questions fréquentes</a></p>
@@ -21,18 +25,10 @@
         </nav>
     </div>
     <div class="corps">
-        <h1>Prise de rendez-vous</h1>
-        <p> <form method="post" action="router.php?action=demande_rdv">
-            <label> Cause :
-                <label><input type="radio" name="cause_rdv" value="panne">Panne</label>
-                <label><input type="radio" name="cause_rdv" value="installation">Installation</label>
-            </label> <br> <br>
-            <label>
-                Vos disponibilités :
-                <input type="text" name="dispo" required>
-            </label>
+        <h1>Messagerie</h1>
+        <p>
+            Votre mesage a bien été envoyé.<br>
 
-            <a href="router.php?action=conf_rdv"> Envoyer</a>
         </p>
     </div>
 </div>
@@ -40,3 +36,10 @@
 </body>
 <?php include ("../../footer.php"); ?>
 </html>
+<?php
+/**
+ * Created by IntelliJ IDEA.
+ * User: Akhara
+ * Date: 14/01/2019
+ * Time: 09:46
+ */

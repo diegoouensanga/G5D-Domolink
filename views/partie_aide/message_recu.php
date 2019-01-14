@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/style1.css">
+    <link rel ="stylesheet" href="/css/notifications.css">
     <meta name="description" content="Le top de la maison Connectée !">
     <title>DomoLink</title>
 </head>
@@ -40,13 +41,12 @@
                 <th>Objet</th>
                 <th>Message</th>
                 <th>Date</th>
-                <th>Supprimer</th>
             </tr>
             </thead>
 
 
             <tbody>
-            messageRecu();
+            <?php messageRecu() ?>
             </tbody>
         </table>
     </section>

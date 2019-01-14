@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/style1.css">
+    <link rel="stylesheet" href="/css/notifications.css">
+
     <meta name="description" content="Le top de la maison Connectée !">
     <title>DomoLink</title>
 </head>
@@ -33,6 +35,23 @@
     </div>
 <div class="corps">
     <h1> Messages envoyés  </h1>
+    <section>
+        <table>
+            <thead>
+            <tr>
+                <th>Expediteur</th>
+                <th>Objet</th>
+                <th>Message</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+
+
+            <tbody>
+            <?php messageEnvoye() ?>
+            </tbody>
+        </table>
+    </section>
 
 
 </div>

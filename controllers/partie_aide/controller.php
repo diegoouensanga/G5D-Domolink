@@ -1,4 +1,4 @@
-<?php
+ <?php
 require "../../models/partie_aide/model.php";
 
 function prise_de_rdv(){
@@ -42,10 +42,10 @@ function ajout_formulaire(){
 
         if (verifSerie($serie)){
             insertPannes($serie, $message);
-            require "views/confirmation_panne.php";
+            require "../../views/partie_aide/confirmation_panne.php";
         }
         else{
-            require "views/fail_panne.php";
+            require "../../views/partie_aide/fail_panne.php";
         }
     }
 
@@ -58,10 +58,10 @@ function formulaire_message(){
         $objet = htmlspecialchars($_POST['objet']);
         if (verifMail($destinataire)){
             insertMessage($destinataire, $message, $objet);
-            require "views/confirmation_message.php";
+            require "../../views/partie_aide/confirmation_message.php";
         }
         else{
-            require "views/fail_message.php";
+            require "../../views/partie_aide/fail_message.php";
         }
     }
 }
@@ -71,14 +71,20 @@ function demande_rdv(){
        $dispo = htmlspecialchars($_POST['dispo']);
        $cause_rdv = ($_POST['cause_rdv']);
        insertRDV($dispo, $cause_rdv);
-       require "views/confirmation_rdv.php";
+       require "../../views/partie_aide/confirmation_rdv.php";
     }
     else{
-        require "views/rdv_fail.php";
+        require "../../views/partie_aide/rdv_fail.php";
     }
+}
+
+function messageEnvoye(){
+    require messageEnvoye1();
 }
 
 function messageRecu(){
     require messageRecu1();
 }
+
+
 ?>

@@ -45,8 +45,8 @@ if (empty($_SESSION['id']) && (!(strpos($_SERVER['REQUEST_URI'],"connexion.php")
                 <a href="/compte.php?action=infos" class="caption">Compte</a>
             </div>
             <div class="menuItem">
-                <a href="/aide/routers/router.php"><img draggable="false" src="/ressources/aide.png" alt="DomoLink" width=60%/></a>
-                <a href="/aide/routers/router.php" class="caption">Aide</a>
+                <a href="/routers/partie_aide/router.php"><img draggable="false" src="/ressources/aide.png" alt="DomoLink" width=60%/></a>
+                <a href="/routers/partie_aide/router.php" class="caption">Aide</a>
             </div>
         </div>
     <?php endif; ?>

@@ -47,8 +47,9 @@
         </label> <br>
         <input type="submit" VALUE="Envoyer">
 
-    </p>
+
     </form>
+    </p>
 </div>
 </div>
 

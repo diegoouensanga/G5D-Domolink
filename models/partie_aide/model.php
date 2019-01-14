@@ -67,34 +67,50 @@ function insertMessage($destinataire, $message, $titre){
     $req->closeCursor();
 }
 
-function messageRecu1(){
+function messageRecu1()
+{
     $db = dbConnect();
     $idUtilsateur = $_SESSION['id'];
     $message_recu = $db->query('SELECT * FROM Messages WHERE id_receveur = $idUtilsateur ORDER BY date DESC ');
+    while ($donnees = $message_recu->fetch()) {
+        ?>
+        <tr>
+        <td>
+            <?= $donnees['id_expediteur'] ?>
+        </td>
+        <td>
+            <?= $donnees['titre'] ?>
+        </td>
+        <td>
+            <?= $donnees['message'] ?>
+        </td>
+        <td>
+            <?= ($donnees['date']) ?>
+        </td>
+        </tr>
+        <?php $message_recu->closeCursor();
 
+    }
 }
 
-function messageEnvoye(){
+function messageEnvoye1(){
     $db = dbConnect();
     $idUtilsateur = $_SESSION['id'];
     $message_envoye = $db->query('SELECT * FROM Messages WHERE id_envoyeur = $idUtilisateur ORDER BY date DESC ');
     while ($donnees = $message_envoye->fetch()) {
         ?>
         <tr>
-            <td><div class=expediteur><?= $donnees['id_envoyeur']?></div></td>
-            <td><div class=objet><?= $donnees['titre']?></div></td>
-            <td><div class=message><?= $donnees['message']?></div></td>
-            <td><div class=date><?= $donnees['date']?></div></td>
-            <td><div class=supprimer>
-                    <form
-                        class='wrapDeleteButton'
-                        action='deletenotification.php?id=<?= $donnees['id']?>'
-                        method="post">
-                        <input type="submit" name="supprimer_notification" value="Supprimer">
-                    </form>
-                </div></td>
-
-        </tr>
+        <td>
+            <?= $donnees['id_receveur'] ?>
+        </td>
+        <td>
+            <?= $donnees['titre'] ?>
+        </td>
+        <td>
+            <?= $donnees['message'] ?>
+        </td>
+        <td>
+        <?= ($donnees['date']) ?>
         <?php
     }
     $message_envoye->closeCursor();
