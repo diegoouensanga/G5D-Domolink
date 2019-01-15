@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
     <link rel="shortcut icon" href="/ressources/favicon.png"/>
-    <link rel="stylesheet" href="/css/cssGeneral.css">
-    <link rel="stylesheet" href="/css/aide.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/style1.css">
+    <link rel="stylesheet" href="/css/notifications.css">
+
     <meta name="description" content="Le top de la maison Connectée !">
     <title>DomoLink</title>
 </head>
 
 <?php include("../../header.php"); ?>
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa" />
 
 <body>
 <div class = "wrapper">
@@ -32,13 +35,30 @@
     </div>
 <div class="corps">
     <h1> Messages envoyés  </h1>
+    <section>
+        <table>
+            <thead>
+            <tr>
+                <th>Destinataire</th>
+                <th>Objet</th>
+                <th>Message</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+
+
+            <tbody>
+            <?php messageEnvoye() ?>
+            </tbody>
+        </table>
+    </section>
 
 
 </div>
 </div>
 
 </body>
-<?php include("../../footer.php"); ?>
+<?php include ("../../footer.php"); ?>
 </html>
 <?php
 /**

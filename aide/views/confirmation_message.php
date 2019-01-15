@@ -9,12 +9,13 @@
     <title>DomoLink</title>
 </head>
 <?php include("../../header.php"); ?>
-</head>
+<link rel="stylesheet" href="/views/partie_aide/CSS/style.css">
+
 
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa" />
-
-<body>
 <div class = "wrapper">
+    <div class ='header'>
+    </div>
     <div class="menu">
         <nav>
             <p><a href="router.php?">Les questions fréquentes</a></p>
@@ -24,18 +25,21 @@
         </nav>
     </div>
     <div class="corps">
-        <h1>Les questions fréquentes</h1>
-        <p>Ici il est possible de visualiser les questions les plus posées. </p>
+        <h1>Messagerie</h1>
+        <p>
+            Votre mesage a bien été envoyé.<br>
+
+        </p>
     </div>
 </div>
-<?php include ("../../footer.php"); ?>
+
 </body>
+<?php include ("../../footer.php"); ?>
 </html>
 <?php
 /**
  * Created by IntelliJ IDEA.
  * User: Akhara
- * Date: 12/11/2018
- * Time: 13:39
+ * Date: 14/01/2019
+ * Time: 09:46
  */
-?>

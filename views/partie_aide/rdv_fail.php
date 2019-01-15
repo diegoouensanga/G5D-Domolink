@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="/ressources/favicon.png"/>
+    <link rel="shortcut icon" href="/ressources/favicon.png"/> /
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/style1.css">

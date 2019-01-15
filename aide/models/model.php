@@ -2,7 +2,7 @@
 
 function dbConnect(){
     try {
-        $db = new PDO('mysql:host=127.0.0,1;dbname=Domolink;charset=utf8', 'root', 'root');
+        $db = new PDO('mysql:host=localhost;dbname=Domolink;charset=utf8', 'root', 'alpine');
         return $db;
 
     }
@@ -15,7 +15,7 @@ function dbConnect(){
 function insertPannes($serie, $message){ //Insert dans la base de donnée les nouvelles données dans la base de données
     $db = dbconnect();
     $utilisateurId = $_SESSION['id'];
-    $equipementId = $db->query('SELECT id from Equipements WHERE serie =$serie');
+    $equipementId = $db->query("SELECT id from Equipements WHERE serie =$serie");
     $req = $db->prepare("INSERT INTO Pannes(date, serie, equipement_id, message, etat, client_id ) VALUES (:DATE, $serie, $equipementId, $message, 1, $utilisateurId)");
     $req->execute();
     $req->closeCursor();
@@ -45,7 +45,7 @@ function verifSerie($serie){ //vérifie que le numéro de série existe et appar
 
 function verifMail($destinataire){
     $db = dbConnect();
-    $confmail = $db->query('SELECT id FROM Utilisateurs WHERE mail = $destinataire');
+    $confmail = $db->query("SELECT id FROM Utilisateurs WHERE mail = $destinataire");
     if ($confmail==null){
         return false;
     }
@@ -54,7 +54,7 @@ function verifMail($destinataire){
 
 function getIdReceveur($destinataire){
     $db = dbConnect();
-    $id_receveur = $db->query('SELECT id FROM Utilisateurs WHERE mail =$destinataire');
+    $id_receveur = $db->query("SELECT id FROM Utilisateurs WHERE mail =$destinataire");
     return $id_receveur;
 }
 
@@ -62,39 +62,60 @@ function insertMessage($destinataire, $message, $titre){
     $db = dbConnect();
     $envoyeur_id = $_SESSION['id'];
     $receveur_id = getIdReceveur($destinataire);
-    $req = $db->prepare('INSERT INTO Messages(id_envoyeur, id_receveur, date, titre, message) VALUES($envoyeur_id, $receveur_id, DATE , $titre, $message)');
+    $req = $db->prepare("INSERT INTO Messages(id_envoyeur, id_receveur, date, titre, message) VALUES($envoyeur_id, $receveur_id, DATE , $titre, $message)");
     $req->execute();
     $req->closeCursor();
 }
 
-function messageRecu1(){
+function messageRecu1()
+{
     $db = dbConnect();
     $idUtilsateur = $_SESSION['id'];
-    $message_recu = $db->query('SELECT * FROM Messages WHERE id_receveur = $idUtilsateur ORDER BY date DESC ');
+    $message_recu = $db->query("SELECT * FROM Messages WHERE id_receveur = $idUtilsateur ORDER BY date DESC ");
+    while ($donnees = $message_recu->fetch()) {
+        ?>
+        <tr>
+        <td>
+            <?= $mail = $donnees['id_expediteur'];
+            $req = $db->query("SELECT mail FROM Utilisateurs WHERE id = $mail");
+            echo $req; ?> ?>
+        </td>
+        <td>
+            <?= $donnees['titre'] ?>
+        </td>
+        <td>
+            <?= $donnees['message'] ?>
+        </td>
+        <td>
+            <?= ($donnees['date']) ?>
+        </td>
+        </tr>
+        <?php $message_recu->closeCursor();
 
+    }
 }
 
-function messageEnvoye(){
+function messageEnvoye1(){
     $db = dbConnect();
     $idUtilsateur = $_SESSION['id'];
-    $message_envoye = $db->query('SELECT * FROM Messages WHERE id_envoyeur = $idUtilisateur ORDER BY date DESC ');
+    $message_envoye = $db->query("SELECT * FROM Messages WHERE id_envoyeur = $idUtilsateur ORDER BY date DESC ");
     while ($donnees = $message_envoye->fetch()) {
         ?>
         <tr>
-            <td><div class=expediteur><?= $donnees['id_envoyeur']?></div></td>
-            <td><div class=objet><?= $donnees['titre']?></div></td>
-            <td><div class=message><?= $donnees['message']?></div></td>
-            <td><div class=date><?= $donnees['date']?></div></td>
-            <td><div class=supprimer>
-                    <form
-                        class='wrapDeleteButton'
-                        action='deletenotification.php?id=<?= $donnees['id']?>'
-                        method="post">
-                        <input type="submit" name="supprimer_notification" value="Supprimer">
-                    </form>
-                </div></td>
-
-        </tr>
+        <td>
+            <?=
+            $mail = $donnees['id_receveur'];
+            $req = $db->query("SELECT mail FROM Utilisateurs WHERE id = $mail");
+            echo $req; ?>
+        </td>
+        <td>
+            <?= $donnees['titre'] ?>
+        </td>
+        <td>
+            <?= $donnees['message'] ?>
+        </td>
+        <td>
+        <?= ($donnees['date']) ?>
         <?php
     }
     $message_envoye->closeCursor();

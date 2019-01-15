@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
     <link rel="shortcut icon" href="/ressources/favicon.png"/>
-    <link rel="stylesheet" href="/css/cssGeneral.css">
-    <link rel="stylesheet" href="/css/aide.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/style1.css">
     <meta name="description" content="Le top de la maison Connectée !">
     <title>DomoLink</title>
 </head>
 <?php include("../../header.php"); ?>
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa" />
 
 <body>
 <div class = "wrapper">
@@ -26,13 +27,13 @@
         <p> <form method="post" action="router.php?action=ajouter_formulaire">
             <label>
                 Numéro de série de l'équipement : <input type="number" name="serie">
-            </label> <br>
+            </label> <br> <br>
             <label>
                 Cause de la panne : <br>
-                <input type="text" name="message" required>
+                <input type="text" name="message" size="50" style="height:55px;" required>
 
-            </label> <br>
-            <input type="submit" VALUE="Envoyer">
+            </label> <br> <br>
+            <input type="submit" class="button" VALUE="Envoyer">
 
         </p>
         </form>
@@ -42,5 +43,5 @@
 </div>
 
 </body>
-<?php include("../../footer.php"); ?>
+<?php include ("../../footer.php"); ?>
 </html>
