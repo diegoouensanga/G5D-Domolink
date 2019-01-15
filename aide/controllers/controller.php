@@ -1,38 +1,38 @@
  <?php
-require "../../models/partie_aide/model.php";
+require "../../aide/models/model.php";
 
 function prise_de_rdv(){
-    require "../../views/partie_aide/prise_de_rdv.php";
+    require "../../aide/views/prise_de_rdv.php";
 }
 function formulaire_panne(){
-    require "../../views/partie_aide/formulaire_panne.php";
+    require "../../aide/views/formulaire_panne.php";
 }
 function questions_frequentes(){
-    require "../../views/partie_aide/faq.php";
+    require "../../aide/views/faq.php";
 }
 
 function confirmation_rdv(){
-    require "../../views/partie_aide/confirmation_rdv.php";
+    require "../../aide/views/confirmation_rdv.php";
 }
 
 function confirmation_panne(){
-    require "../../views/partie_aide/confirmation_panne.php";
+    require "../../aide/views/confirmation_panne.php";
 }
 
 function messagerie(){
-    require "../../views/partie_aide/messagerie.php";
+    require "../../aide/views/messagerie.php";
 }
 
 function message_recu(){
-    require "../../views/partie_aide/message_recu.php";
+    require "../../aide/views/message_recu.php";
 }
 
 function message_envoye(){
-    require "../../views/partie_aide/message_envoye.php";
+    require "../../aide/views/message_envoye.php";
 }
 
 function nouveau_message(){
-    require "../../views/partie_aide/messagerie.php";
+    require "../../aide/views/messagerie.php";
 }
 
 function ajout_formulaire(){
@@ -42,10 +42,10 @@ function ajout_formulaire(){
 
         if (verifSerie($serie)){
             insertPannes($serie, $message);
-            require "../../views/partie_aide/confirmation_panne.php";
+            require "../../aide/views/confirmation_panne.php";
         }
         else{
-            require "../../views/partie_aide/fail_panne.php";
+            require "../../aide/views/fail_panne.php";
         }
     }
 
@@ -58,10 +58,10 @@ function formulaire_message(){
         $objet = htmlspecialchars($_POST['objet']);
         if (verifMail($destinataire)){
             insertMessage($destinataire, $message, $objet);
-            require "../../views/partie_aide/confirmation_message.php";
+            require "../../aide/views/confirmation_message.php";
         }
         else{
-            require "../../views/partie_aide/fail_message.php";
+            require "../../aide/views/fail_message.php";
         }
     }
 }
@@ -71,10 +71,10 @@ function demande_rdv(){
        $dispo = htmlspecialchars($_POST['dispo']);
        $cause_rdv = ($_POST['cause_rdv']);
        insertRDV($dispo, $cause_rdv);
-       require "../../views/partie_aide/confirmation_rdv.php";
+       require "../../aide/views/confirmation_rdv.php";
     }
     else{
-        require "../../views/partie_aide/rdv_fail.php";
+        require "../../aide/views/rdv_fail.php";
     }
 }
 
