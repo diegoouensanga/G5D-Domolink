@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/css/style1.css">
     <link rel ="stylesheet" href="/css/notifications.css">
     <meta name="description" content="Le top de la maison Connectée !">
-    <title>DomoLink</title>
+    <title>Messages reçus</title>
 </head>
 <?php include("../../header.php"); ?>
 

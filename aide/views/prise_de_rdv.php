@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/css/cssGeneral.css">
     <link rel="stylesheet" href="/css/style1.css">
     <meta name="description" content="Le top de la maison Connectée !">
-    <title>DomoLink</title>
+    <title>Prise de rendez-vous</title>
 </head>
 <?php include("../../header.php"); ?>
 
@@ -31,7 +31,7 @@
                 <input type="text" name="dispo" size="50" style="height:55px;" required>
             </label> <br> <br>
 
-            <a href="router.php?action=conf_rdv"> Envoyer</a>
+            <input type="submit" class="button" value="Envoyer">
         </p>
     </div>
 </div>

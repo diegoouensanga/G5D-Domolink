@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/css/cssGeneral.css">
     <link rel="stylesheet" href="/css/style1.css">
     <meta name="description" content="Le top de la maison Connectée !">
-    <title>DomoLink</title>
+    <title>Les questions fréquentes</title>
 </head>
 <?php include("../../header.php"); ?>
 </head>
@@ -25,6 +25,11 @@
     <div class="corps">
         <h1>Les questions fréquentes</h1>
         <p>Ici il est possible de visualiser les questions les plus posées. </p>
+        <?php $id = $_SESSION['id'];
+        $mail = $_SESSION['prenom'];
+        echo $id;
+        echo $mail;
+        ?>
     </div>
 </div>
 <?php include ("../../footer.php"); ?>

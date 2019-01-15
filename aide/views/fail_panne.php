@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/css/cssGeneral.css">
     <link rel="stylesheet" href="/css/style1.css">
     <meta name="description" content="Le top de la maison Connectée !">
-    <title>DomoLink</title>
+    <title>Formulaire de panne</title>
 </head>
 <?php include("../../header.php"); ?>
 <link rel="stylesheet" href="/views/partie_aide/CSS/style.css">
