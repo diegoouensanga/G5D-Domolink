@@ -1,3 +1,6 @@
+@import "footer.css";
+@import "header.css";
+
 @font-face {
   font-family: "Comfortaa-Regular";
   src: url('../ressources/Comfortaa-Regular.ttf');
