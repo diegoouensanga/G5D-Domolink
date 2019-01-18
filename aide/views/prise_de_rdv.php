@@ -26,10 +26,14 @@
                 <label><input type="radio" name="cause_rdv" value="panne">Panne</label>
                 <label><input type="radio" name="cause_rdv" value="installation">Installation</label>
             </label> <br> <br>
-            <label>
-                Vos disponibilités :
-                <input type="text" name="dispo" size="50" style="height:55px;" required>
-            </label> <br> <br>
+                Veuillez sélecionner vos disponibilité pour la semaine à suivre:
+        <p>
+            Date : <input type="date" name="date">
+        </p>
+       
+
+
+             <br> <br>
 
             <input type="submit" class="button" value="Envoyer">
         </p>

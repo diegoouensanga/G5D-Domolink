@@ -122,10 +122,10 @@ function messageEnvoye1(){
 
 }
 
-function insertRDV($dispo, $cause_rdv){
+function insertRDV($date, $cause_rdv){
     $db = dbConnect();
     $idUtilisateur = $_SESSION['id'];
-    $req = $db->prepare("INSERT INTO RDV(id, cause, dispo) VALUES($idUtilisateur, $cause_rdv, $dispo)");
+    $req = $db->prepare("INSERT INTO RDV(client_id, cause, date) VALUES($idUtilisateur, $cause_rdv, $date)");
     $req->bindParam("dispo", $dispo);
     $req->bindParam("cause", $cause_rdv);
     $req->execute();
