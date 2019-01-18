@@ -1,0 +1,26 @@
+h2
+{
+    color : white;
+    position: center ;
+}
+
+.Section
+{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5px;
+    grid-auto-rows: 100%;
+    color : white;
+}
+
+.SousSection
+{
+    grid-column: 1/4;
+    grid-row: 1;
+    background: #AD031A;
+    border: 1px solid #AD031A;
+    text-align: center;
+//font-size: 1wvm;
+    position: relative;
+    height: 104%;
+}
