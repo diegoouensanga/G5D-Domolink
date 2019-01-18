@@ -67,9 +67,8 @@ function formulaire_message(){
 }
 
 function demande_rdv(){
-    if ($_POST['cause_rdv'] && $_POST['date'] && $_POST['heure']){
+    if ($_POST['cause_rdv'] && $_POST['date'] ){
        $date = ($_POST['date']);
-       $heure = ($_POST['heure']);
        $cause_rdv = ($_POST['cause_rdv']);
        insertRDV($date, $cause_rdv);
        require "../../aide/views/confirmation_rdv.php";
@@ -85,6 +84,10 @@ function messageEnvoye(){
 
 function messageRecu(){
     messageRecu1();
+}
+
+function chercheQuestion(){
+    afficherQuestion();
 }
 
 

@@ -134,9 +134,15 @@ function insertRDV($date, $cause_rdv){
 
 }
 
-/**
- * Created by IntelliJ IDEA.
- * User: Akhara
- * Date: 16/12/2018
- * Time: 12:52
- */
+function afficherQuestion(){
+    $db = dbConnect();
+    $req = $db->query('SELECT * FROM faq');
+    while ($donnees = $req->fetch()){
+        ?>
+            <div class="question"> <?php $donnees['question'] ?> </div> : <br>
+            <div class="reponse"> <?php $donnees['reponse'] ?> </div> <br> <br>
+            <?php
+    }
+    $req->closeCursor();
+
+}
