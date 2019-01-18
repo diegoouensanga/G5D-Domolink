@@ -30,7 +30,7 @@
         <p>
             Date : <input type="date" name="date">
         </p>
-       
+
 
 
              <br> <br>

@@ -6,7 +6,7 @@ class Database
     {
         if (self::$instance == null) {
         	try {
-            	self::$instance = new PDO('mysql:host=localhost;dbname=Domolink;charset=utf8', 'root', 'root');
+            	self::$instance = new PDO('mysql:host=localhost;dbname=Domolink;charset=utf8', 'root', 'alpine');
             } catch (Exception $e) {
             	header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
     			echo "<script>alert('Impossible de se connecter à la base de donnée !{$e->getMessage()}');</script>";

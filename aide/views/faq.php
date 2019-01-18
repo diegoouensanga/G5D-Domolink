@@ -25,11 +25,7 @@
     <div class="corps">
         <h1>Les questions fréquentes</h1>
         <p>Ici il est possible de visualiser les questions les plus posées. </p>
-        <?php $id = $_SESSION['id'];
-        $mail = $_SESSION['prenom'];
-        echo $id;
-        echo $mail;
-        ?>
+        
     </div>
 </div>
 <?php include ("../../footer.php"); ?>
