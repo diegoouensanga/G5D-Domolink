@@ -1,13 +1,12 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mar. 18 déc. 2018 à 08:36
+-- Généré le :  sam. 19 jan. 2019 à 09:09
 -- Version du serveur :  8.0.13
 -- Version de PHP :  7.1.19
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -21,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `Domolink`
 --
+CREATE DATABASE IF NOT EXISTS `Domolink` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE Domolink;
 
 -- --------------------------------------------------------
 
@@ -29,18 +30,18 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `Administration` (
-  `cgu` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `adresse` varchar(255) NOT NULL,
-  `mail` varchar(255) NOT NULL,
-  `telephone` varchar(10) NOT NULL,
-  `mentions_legales` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `nom` varchar(50) NOT NULL,
-  `societe` varchar(50) NOT NULL,
-  `slogan` varchar(255) NOT NULL,
-  `facebook` varchar(2083) DEFAULT NULL,
-  `twitter` varchar(2083) DEFAULT NULL,
-  `instagram` varchar(2083) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `cgu` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `adresse` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `telephone` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mentions_legales` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nom` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `societe` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slogan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `facebook` varchar(2083) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `twitter` varchar(2083) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `instagram` varchar(2083) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `Administration`
@@ -57,11 +58,11 @@ INSERT INTO `Administration` (`cgu`, `adresse`, `mail`, `telephone`, `mentions_l
 
 CREATE TABLE `Animaux` (
   `id` int(11) NOT NULL,
-  `nom` varchar(30) DEFAULT NULL,
+  `nom` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `age` int(11) DEFAULT NULL,
-  `race` varchar(30) DEFAULT NULL,
+  `race` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `equipement_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -71,14 +72,24 @@ CREATE TABLE `Animaux` (
 
 CREATE TABLE `Equipement` (
   `id` int(11) NOT NULL,
-  `nom` varchar(30) DEFAULT NULL,
-  `type` enum('capteur','actionneur') DEFAULT NULL,
+  `nom` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type` enum('capteur','actionneur') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `actif` tinyint(1) DEFAULT NULL,
-  `genre` varchar(30) DEFAULT NULL,
+  `genre` enum('Température','Humidité','Alarme','Lumières') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `donnees` int(11) DEFAULT NULL,
   `piece_id` int(11) DEFAULT NULL,
   `serial_number` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `Equipement`
+--
+
+INSERT INTO `Equipement` (`id`, `nom`, `type`, `actif`, `genre`, `donnees`, `piece_id`, `serial_number`) VALUES
+(6, NULL, 'capteur', NULL, 'Température', 22, 78, 1),
+(7, NULL, 'capteur', NULL, 'Humidité', 18, 78, NULL),
+(8, NULL, 'actionneur', 1, 'Alarme', NULL, 78, NULL),
+(9, NULL, 'actionneur', 0, 'Lumières', NULL, 78, NULL);
 
 -- --------------------------------------------------------
 
@@ -88,9 +99,17 @@ CREATE TABLE `Equipement` (
 
 CREATE TABLE `FAQ` (
   `id` int(11) NOT NULL,
-  `question` text NOT NULL,
-  `reponse` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `question` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reponse` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `FAQ`
+--
+
+INSERT INTO `FAQ` (`id`, `question`, `reponse`) VALUES
+(1, 'Comment changer mon mot de passe ?', 'Rendez-vous dans \"Compte\" , puis cliquer sur \"Changer le mot de passe\" sur le menu.'),
+(2, 'Comment supprimer mon compte ?', 'Rendez-vous dans la rubrique \"Compte\" puis cliquer sur \"Supprimer le compte\" sur le menu, et renseignez votre adresse mail.');
 
 -- --------------------------------------------------------
 
@@ -101,7 +120,7 @@ CREATE TABLE `FAQ` (
 CREATE TABLE `Increment` (
   `statistique_id` int(11) DEFAULT NULL,
   `equipement_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -111,13 +130,21 @@ CREATE TABLE `Increment` (
 
 CREATE TABLE `Messages` (
   `id` int(11) NOT NULL,
-  `message` text,
-  `titre` varchar(255) DEFAULT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci,
+  `titre` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `id_receveur` int(11) DEFAULT NULL,
   `id_envoyeur` int(11) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   `lu` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `Messages`
+--
+
+INSERT INTO `Messages` (`id`, `message`, `titre`, `id_receveur`, `id_envoyeur`, `date`, `lu`) VALUES
+(6, 'Test', 'Message', 33, 31, '2019-01-19 10:00:07', NULL),
+(7, 'Bonjour', 'Test', 31, 34, '2019-01-19 10:07:06', NULL);
 
 -- --------------------------------------------------------
 
@@ -127,22 +154,23 @@ CREATE TABLE `Messages` (
 
 CREATE TABLE `Notifications` (
   `id` int(11) NOT NULL,
-  `expediteur` varchar(30) DEFAULT NULL,
+  `expediteur` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `type` int(11) DEFAULT NULL,
-  `message` text,
+  `message` mediumtext COLLATE utf8mb4_unicode_ci,
   `lu` tinyint(1) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   `utilisateur_id` int(11) DEFAULT NULL,
-  `objet` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `objet` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `Notifications`
 --
 
 INSERT INTO `Notifications` (`id`, `expediteur`, `type`, `message`, `lu`, `date`, `utilisateur_id`, `objet`) VALUES
-(1, 'Moi', NULL, 'Notification Test', NULL, '2018-12-10 19:44:33', 14, 'Test'),
-(2, 'Système', NULL, 'Welcome !', NULL, '2018-12-12 18:35:19', 14, 'Bienvenue');
+(1, 'Moi', NULL, 'Notification Test', NULL, '2018-12-10 19:44:33', 31, 'Test'),
+(4, 'System', NULL, 'Vous avez un nouveau message', NULL, '2019-01-19 10:00:07', 33, 'Nouveau Message'),
+(5, 'System', NULL, 'Vous avez un nouveau message', NULL, '2019-01-19 10:07:06', 31, 'Nouveau Message');
 
 -- --------------------------------------------------------
 
@@ -154,10 +182,18 @@ CREATE TABLE `Pannes` (
   `id` int(11) NOT NULL,
   `date` datetime DEFAULT NULL,
   `equipement_id` int(11) DEFAULT NULL,
-  `message` text,
+  `message` mediumtext COLLATE utf8mb4_unicode_ci,
   `etat` int(11) DEFAULT NULL,
-  `client_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `client_id` int(11) DEFAULT NULL,
+  `serie` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `Pannes`
+--
+
+INSERT INTO `Pannes` (`id`, `date`, `equipement_id`, `message`, `etat`, `client_id`, `serie`) VALUES
+(1, '2019-01-19 00:01:38', NULL, 'sd', 1, 31, 1);
 
 -- --------------------------------------------------------
 
@@ -167,9 +203,9 @@ CREATE TABLE `Pannes` (
 
 CREATE TABLE `Pieces` (
   `id` int(11) NOT NULL,
-  `nom` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `nom` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_utilisateur` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `Pieces`
@@ -184,7 +220,13 @@ INSERT INTO `Pieces` (`id`, `nom`, `id_utilisateur`) VALUES
 (51, 'Cuisine', 15),
 (55, 'Chambre', 15),
 (56, 'Chambre', 16),
-(57, 'Salle De Bain', 14);
+(57, 'Salle De Bain', 14),
+(77, 'Test', 22),
+(78, 'Jardin', 31),
+(79, 'Cuisine', 23),
+(81, 'Salon', 23),
+(91, 'Salon', 31),
+(100, 'Cuisine', 31);
 
 -- --------------------------------------------------------
 
@@ -194,11 +236,20 @@ INSERT INTO `Pieces` (`id`, `nom`, `id_utilisateur`) VALUES
 
 CREATE TABLE `RDV` (
   `id` int(11) NOT NULL,
-  `sujet` varchar(255) DEFAULT NULL,
-  `horaire` datetime DEFAULT NULL,
+  `cause` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date` date DEFAULT NULL,
   `reparateur_id` int(11) DEFAULT NULL,
   `client_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `RDV`
+--
+
+INSERT INTO `RDV` (`id`, `cause`, `date`, `reparateur_id`, `client_id`) VALUES
+(1, 'panne', '2019-01-18', NULL, 31),
+(2, 'panne', '2019-01-23', NULL, 31),
+(3, 'panne', '2019-01-27', NULL, 34);
 
 -- --------------------------------------------------------
 
@@ -209,11 +260,23 @@ CREATE TABLE `RDV` (
 CREATE TABLE `Statistiques` (
   `id` int(11) NOT NULL,
   `type` int(11) DEFAULT NULL,
-  `valeurs` json DEFAULT NULL,
   `depart` datetime DEFAULT NULL,
-  `espacement` time DEFAULT NULL,
-  `utilisateur_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `espacement` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `labels` json DEFAULT NULL,
+  `datas` json DEFAULT NULL,
+  `owner_type` enum('piece','capteur','utilisateur') COLLATE utf8mb4_unicode_ci DEFAULT 'piece',
+  `owner_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `Statistiques`
+--
+
+INSERT INTO `Statistiques` (`id`, `type`, `depart`, `espacement`, `labels`, `datas`, `owner_type`, `owner_id`) VALUES
+(1, NULL, NULL, 'mensuelle', '[\"Jan\", \"Fév\", \"Mar\", \"Avr\", \"Mai\", \"Jui\", \"Juil\", \"Aout\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"]', '[1, 2, 3, 4, 5, 6, 7, 8, 10, 17, 2, 15]', 'piece', 78),
+(2, NULL, NULL, 'annuelle', '[\"2015\", \"2016\", \"2017\", \"2018\"]', '[8, 10, 17, 2]', 'piece', 78),
+(3, NULL, NULL, 'mensuelle', '[\"Jan\", \"Fév\", \"Mar\", \"Avr\", \"Mai\", \"Jui\", \"Juil\", \"Aout\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"]', '[2, 3, 3, 10, 5, 6, 7, 8, 7, 17, 2, 4]', 'utilisateur', 31),
+(4, NULL, NULL, 'annuelle', '[\"2015\", \"2016\", \"2017\", \"2018\"]', '[69, 10, 42, 55]', 'utilisateur', 31);
 
 -- --------------------------------------------------------
 
@@ -223,21 +286,21 @@ CREATE TABLE `Statistiques` (
 
 CREATE TABLE `Utilisateurs` (
   `id` int(11) NOT NULL,
-  `nom` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `prenom` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `mail` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `mdp` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `nom` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `prenom` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mail` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mdp` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `type` int(11) NOT NULL DEFAULT '0',
-  `telephone` varchar(10) DEFAULT NULL,
+  `telephone` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `naissance` date DEFAULT NULL,
   `postal` int(8) DEFAULT NULL,
-  `ville` varchar(40) DEFAULT NULL,
-  `pays` varchar(30) DEFAULT NULL,
-  `rue` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ville` varchar(40) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pays` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `rue` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `numeroRue` int(11) DEFAULT '0',
-  `autres` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `autres` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cMAC` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `Utilisateurs`
@@ -245,8 +308,9 @@ CREATE TABLE `Utilisateurs` (
 
 INSERT INTO `Utilisateurs` (`id`, `nom`, `prenom`, `mail`, `mdp`, `type`, `telephone`, `naissance`, `postal`, `ville`, `pays`, `rue`, `numeroRue`, `autres`, `cMAC`) VALUES
 (16, '', '', 'utilisateur.com', 'dd10ddc914f2528f71534cfbf6d73a9fadd3661efb09ae6d855c2d73fa81cc6b', 0, '', '1970-01-01', 0, '', '', '', 0, '', NULL),
-(22, NULL, NULL, 'admin@admin.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 2, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL),
-(23, NULL, NULL, 'avocat@avocat.com', '9a258d488bdc2474ae16ab0185c12b700f654e415c38cde80ecc591bbf3460c6', 1, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL);
+(31, '', '', 'avocat@avocat.com', '9a258d488bdc2474ae16ab0185c12b700f654e415c38cde80ecc591bbf3460c6', 1, '', '2008-01-30', 75017, 'Lyon', '', '', 15, '', NULL),
+(32, NULL, NULL, 'utilisateur@utilisateur.com', 'a3ff17b2f8366fc00af283083a61e0b6c44ac815b8a04e07d500c3f8a4064a6d', 0, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 111),
+(34, NULL, NULL, 'utilisateur2@utilisateur2.com', 'bad1f2e9a8e40433ec4e21bc10f79cbc3d00022b98b7d2246ef2225bde4dcc5d', 0, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 123);
 
 --
 -- Index pour les tables déchargées
@@ -274,8 +338,7 @@ ALTER TABLE `FAQ`
 -- Index pour la table `Messages`
 --
 ALTER TABLE `Messages`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `Messages_id_uindex` (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `Notifications`
@@ -327,49 +390,55 @@ ALTER TABLE `Animaux`
 -- AUTO_INCREMENT pour la table `Equipement`
 --
 ALTER TABLE `Equipement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pour la table `FAQ`
 --
 ALTER TABLE `FAQ`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `Messages`
+--
+ALTER TABLE `Messages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `Notifications`
 --
 ALTER TABLE `Notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `Pannes`
 --
 ALTER TABLE `Pannes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `Pieces`
 --
 ALTER TABLE `Pieces`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT pour la table `RDV`
 --
 ALTER TABLE `RDV`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `Statistiques`
 --
 ALTER TABLE `Statistiques`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `Utilisateurs`
 --
 ALTER TABLE `Utilisateurs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
