@@ -20,8 +20,8 @@
         <h3>À propos de DomoLink</h3>
         Site de <?php echo $donneesAdmin['nom']; ?><br>
         Un projet de la société <?php echo $donneesAdmin['societe']; ?><br>
-        <a id="cgu">Conditions Générales d'utilisation</a><br>
-        <a id="mentions">Mentions Légales</a><br>
+        <a id="cguFooter">Conditions Générales d'utilisation</a><br>
+        <a id="mentionsFooter">Mentions Légales</a><br>
     </div>
 </footer>
 

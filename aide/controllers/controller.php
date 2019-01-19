@@ -37,7 +37,7 @@ function nouveau_message(){
 
 function ajout_formulaire(){
     if ($_POST["serie"] && $_POST["message"]){
-        $serie = ($_POST["serie"]);
+        $serie = $_POST["serie"];
         $message = htmlspecialchars($_POST["message"]);
 
         if (verifSerie($serie)){

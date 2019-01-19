@@ -1,5 +1,5 @@
 <?php
-include("../fonctions.php");
+include_once("fonctions.php");
 if ($_POST['idCanva'] == "roomGraph"){
     $req = DataBase::execute("SELECT ListPieces.nom,Statistiques.datas FROM (SELECT Pieces.nom, Pieces.id, Pieces.id_utilisateur  FROM Pieces WHERE  Pieces.id_utilisateur = :id) as ListPieces LEFT OUTER JOIN Statistiques ON (Statistiques.owner_type = 'piece' AND Statistiques.owner_id =ListPieces.id AND Statistiques.espacement = 'mensuelle')", Array("id" => $_POST['id']));
     $labels =Array();

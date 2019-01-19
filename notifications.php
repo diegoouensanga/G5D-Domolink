@@ -44,7 +44,7 @@ $reponse = Database::execute('SELECT * FROM Notifications WHERE utilisateur_id=:
                 </td>
                 <td>
                     <form
-                            action='phpRessources/deleteNotification.php?id=<?php $donnees['id']; ?>' method="post">
+                            action='phpRessources/deleteNotification.php?id=<?php echo $donnees['id']; ?>' method="post">
                         <input class="button notifButton" type="submit" name="supprimer_notification"
                                value="Supprimer">
                     </form>

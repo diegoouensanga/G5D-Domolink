@@ -3,10 +3,10 @@ function display(strArg) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById("cguLink").onclick = function (){
+    document.getElementById("cguFooter").onclick = function (){
         display("cgu");
     }
-    document.getElementById("mentions").onclick = function (){
+    document.getElementById("mentionsFooter").onclick = function (){
         display("mentions_legales");
     }
 });

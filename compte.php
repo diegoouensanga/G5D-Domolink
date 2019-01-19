@@ -4,8 +4,6 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
     <link rel="shortcut icon" href="ressources/favicon.png"/>
     <link rel="stylesheet" href="css/cssGeneral.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/compte.css">
     <meta name="description" content="Le top de la maison Connectée !">
     <title>DomoLink</title>
@@ -40,8 +38,6 @@ if (!empty($_POST['infoSubmit'])) {
     $donnees = $req->fetch();
     if (hash("sha256", $_POST['actualMDP']) == $donnees['mdp'])
         Database::execute('UPDATE Utilisateurs SET mdp=:mdp WHERE id=:id ', Array('mdp' => hash("sha256", $_POST['newMDP']), 'id' => $_SESSION['id']));
-    else
-        echo "<script>alert('Le pseudo actuel ne correspond pas.')</script>";
 } else if (!empty($_POST['accountDelete'])) {
     Database::execute('DELETE FROM Utilisateurs WHERE id = :id', Array('id' => $_SESSION['id']));
     session_destroy();

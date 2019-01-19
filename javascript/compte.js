@@ -56,45 +56,45 @@ $(document).ready(function () {
                         span.appendChild(txt);
                 }
             }
+        });
+        return false;
     });
-    return false;
-});
-$('#naissance').on('keydown', function () {
-    let string = $('#naissance').val();
-    if (event.key === 8 || event.key === 37 || event.key === 39)
-        return true;
-    else {
-        if (event.key === "-" && (string.length === 2 || string.length === 5))
+    $('#naissance').on('keydown', function () {
+        let string = $('#naissance').val();
+        if (event.keyCode === 8 || event.key === 37 || event.key === 39) {
             return true;
-        if ('0123456789'.indexOf(event.key) === -1)
-            return false;
-        else {
-            if (string.length === 2 || string.length === 5)
-                string = string + "-";
-            $('#naissance').val(string);
-            return true;
-        }
-    }
-});
-$('#infoSubmit').click(function () {
-    var email = $('#mail').val();
-    $.ajax({
-        type: 'post',
-        url: 'phpRessources/check.php',
-        data: {email: email},
-        dataType: 'json',
-        success: function (data) {
-            if (data.exist === false) {
-                document.getElementById("infoForm").submit();
-            } else {
-                let span = document.getElementById("errorText");
-                let txt = document.createTextNode("L'identifiant existe déjà.");
-                if (!span.firstChild)
-                    span.appendChild(txt);
+        } else {
+            if (event.key === "-" && (string.length === 2 || string.length === 5))
+                return true;
+            if ('0123456789'.indexOf(event.key) === -1)
+                return false;
+            else {
+                if (string.length === 2 || string.length === 5)
+                    string = string + "-";
+                $('#naissance').val(string);
+                return true;
             }
-        },
+        }
     });
-    return false;
-});
+    $('#infoSubmit').click(function () {
+        var email = $('#mail').val();
+        $.ajax({
+            type: 'post',
+            url: 'phpRessources/check.php',
+            data: {email: email},
+            dataType: 'json',
+            success: function (data) {
+                if (data.exist === false) {
+                    document.getElementById("infoForm").submit();
+                } else {
+                    let span = document.getElementById("errorText");
+                    let txt = document.createTextNode("L'identifiant existe déjà.");
+                    if (!span.firstChild)
+                        span.appendChild(txt);
+                }
+            },
+        });
+        return false;
+    });
 })
 ;

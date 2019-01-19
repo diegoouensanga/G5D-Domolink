@@ -1,7 +1,5 @@
 <?php
 
-ini_set('display_errors', 1);
-
 require "../../aide/controllers/controller.php";
 if (isset($_GET["action"])) {
     $action = htmlspecialchars($_GET["action"]);

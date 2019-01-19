@@ -3,3 +3,9 @@ if (document.querySelector("#cMAC")) {
         checkNum(document.getElementById("cMAC"));
     }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById("cguLink").onclick = function (){
+        display("cgu");
+    }
+});

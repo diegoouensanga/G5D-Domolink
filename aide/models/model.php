@@ -1,112 +1,85 @@
 <?php
-
-function dbConnect(){
-    try {
-        $db = new PDO('mysql:host=localhost;dbname=Domolink;charset=utf8', 'root', 'root');
-        return $db;
-
-    }
-    catch (Exception $e){
-        die ('Erreur : '.$e->getMessage());
-    }
-}
-
-
-function insertPannes($serie, $message){ //Insert dans la base de donnée les nouvelles données dans la base de données
-    $db = dbconnect();
+include_once("../../phpRessources/fonctions.php");
+session_start();
+function insertPannes($serie, $message)
+{ //Insert dans la base de donnée les nouvelles données dans la base de données
     $utilisateurId = $_SESSION['id'];
-    $equipementId = $db->query("SELECT id from Equipements WHERE serie =$serie");
-    $req = $db->prepare("INSERT INTO Pannes(date, serie, equipement_id, message, etat, client_id ) VALUES (:DATE, $serie, $equipementId, $message, 1, $utilisateurId)");
-    $req->execute();
-    $req->closeCursor();
+    $equipementId = DataBase::execute("SELECT id from Equipements WHERE serial_number =:serie", Array("serie" => $serie));
+    $data = $equipementId->fetch();
+    DataBase::execute("INSERT INTO Pannes(date, serie, equipement_id, message, etat, client_id ) VALUES (NOW(), :serie, :equipementId, :message, 1, :utilisateurId)", Array("serie" => $serie, "equipementId" => $data['id'], "message" => $message, "utilisateurId" => $utilisateurId));
 }
 
 
-function verifSerie($serie){ //vérifie que le numéro de série existe et appartient bien à celui de l'utilisateur.
-    $db = dbConnect();
-    $verif = $db->query("SELECT piece_id FROM Equipements WHERE serie = $serie");
-    if ($verif== null){
+function verifSerie($serie)
+{ //vérifie que le numéro de série existe et appartient bien à celui de l'utilisateur.
+    $verif = DataBase::execute("SELECT id_utilisateur FROM Pieces WHERE id IN (SELECT piece_id FROM Equipement WHERE serial_number= :serie)", array("serie" => $serie));
+    $data = $verif->fetch();
+    return $data['id_utilisateur'] == $_SESSION['id'];
+}
+
+function verifMail($destinataire)
+{
+    $confmail = DataBase::execute("SELECT id FROM Utilisateurs WHERE mail = :destinataire", Array("destinataire" => $destinataire));
+    if ($confmail == null) {
         return false;
-    }
-    elseif($verif != null){
-        $proprio = $_SESSION['id'];
-        $verifproprio = $db->query("SELECT utilisateur_id FROM pieces WHERE id = $verif");
-        if ($proprio == $verifproprio){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    else {
-        return false;
-    }
+    } else return true;
 }
 
-function verifMail($destinataire){
-    $db = dbConnect();
-    $confmail = $db->query("SELECT id FROM Utilisateurs WHERE mail = $destinataire");
-    if ($confmail==null){
-        return false;
-    }
-    else return true;
+function getIdReceveur($destinataire)
+{
+    $id_receveur = DataBase::execute("SELECT id FROM Utilisateurs WHERE mail =:destinataire", Array("destinataire" => $destinataire));
+    $data = $id_receveur->fetch();
+    return $data['id'];
 }
 
-function getIdReceveur($destinataire){
-    $db = dbConnect();
-    $id_receveur = $db->query("SELECT id FROM Utilisateurs WHERE mail =$destinataire");
-    return $id_receveur;
-}
-
-function insertMessage($destinataire, $message, $titre){
-    $db = dbConnect();
+function insertMessage($destinataire, $message, $titre)
+{
     $envoyeur_id = $_SESSION['id'];
     $receveur_id = getIdReceveur($destinataire);
-    $req = $db->prepare("INSERT INTO Messages(id_envoyeur, id_receveur, date, titre, message) VALUES($envoyeur_id, $receveur_id, DATE , $titre, $message)");
-    $req->execute();
-    $req->closeCursor();
+    DataBase::execute("INSERT INTO Messages(id_envoyeur, id_receveur, date, titre, message) VALUES(:envoyeur_id, :receveur_id, NOW() , :titre, :message)", Array("envoyeur_id" => $envoyeur_id, "receveur_id" => $receveur_id, "titre" => $titre, "message" => $message));
+    DataBase::execute("INSERT INTO Notifications(expediteur,date,message, objet, utilisateur_id) VALUES('System', NOW() ,'Vous avez un nouveau message', 'Nouveau Message', :receveur_id)", Array("receveur_id" => $receveur_id));
+
 }
 
 function messageRecu1()
 {
-    $db = dbConnect();
     $idUtilsateur = $_SESSION['id'];
-    $message_recu = $db->query("SELECT * FROM Messages WHERE id_receveur = $idUtilsateur ORDER BY date DESC ");
+    $message_recu = DataBase::execute("SELECT * FROM Messages WHERE id_receveur = :idUtilsateur ORDER BY date DESC ", Array("idUtilsateur" => $idUtilsateur));
     while ($donnees = $message_recu->fetch()) {
-        ?>
+        echo "
         <tr>
-        <td>
-            <?= $mail = $donnees['id_expediteur'];
-            $req = $db->query("SELECT mail FROM Utilisateurs WHERE id = $mail");
-            echo $req; ?> ?>
-        </td>
-        <td>
-            <?= $donnees['titre'] ?>
-        </td>
-        <td>
-            <?= $donnees['message'] ?>
-        </td>
-        <td>
-            <?= ($donnees['date']) ?>
-        </td>
-        </tr>
-        <?php $message_recu->closeCursor();
+        <td>";
+        $idExp = $donnees['id_envoyeur'];
+        $req = DataBase::execute("SELECT mail FROM Utilisateurs WHERE id = :idExp", Array("idExp" => $idExp));
+        $data = $req->fetch();
+        echo $data['mail'];
+        echo "</td><td>";
+        echo $donnees['titre'];
+        echo "</td>
+        <td>";
+        echo $donnees['message'];
+        echo "</td>
+        <td>";
+        echo humanDateFormatHour($donnees['date']);
+        echo "</td>
+        </tr>";
 
     }
 }
 
-function messageEnvoye1(){
-    $db = dbConnect();
+function messageEnvoye1()
+{
     $idUtilsateur = $_SESSION['id'];
-    $message_envoye = $db->query("SELECT * FROM Messages WHERE id_envoyeur = $idUtilsateur ORDER BY date DESC ");
+    $message_envoye = DataBase::execute("SELECT * FROM Messages WHERE id_envoyeur = :idUtilsateur ORDER BY date DESC ", Array("idUtilsateur" => $idUtilsateur));
     while ($donnees = $message_envoye->fetch()) {
         ?>
         <tr>
         <td>
-            <?=
-            $mail = $donnees['id_receveur'];
-            $req = $db->query("SELECT mail FROM Utilisateurs WHERE id = $mail");
-            echo $req; ?>
+            <?php
+            $idRec = $donnees['id_receveur'];
+            $req = DataBase::execute("SELECT mail FROM Utilisateurs WHERE id = :id", Array("id" => $idRec));
+            $data = $req->fetch();
+            echo $data['mail']; ?>
         </td>
         <td>
             <?= $donnees['titre'] ?>
@@ -115,34 +88,24 @@ function messageEnvoye1(){
             <?= $donnees['message'] ?>
         </td>
         <td>
-        <?= ($donnees['date']) ?>
+        <?= (humanDateFormatHour($donnees['date'])) ?>
         <?php
     }
-    $message_envoye->closeCursor();
-
 }
 
-function insertRDV($date, $cause_rdv){
-    $db = dbConnect();
+function insertRDV($date, $cause_rdv)
+{
     $idUtilisateur = $_SESSION['id'];
-    $req = $db->prepare("INSERT INTO RDV(client_id, cause, date) VALUES($idUtilisateur, $cause_rdv, $date)");
-    $req->bindParam("dispo", $dispo);
-    $req->bindParam("cause", $cause_rdv);
-    $req->execute();
-    $req->closeCursor();
-
-
+    DataBase::execute("INSERT INTO RDV(client_id, cause, date) VALUES(:idUtilisateur, :cause_rdv, :date)", Array("idUtilisateur" => $idUtilisateur, "cause_rdv" => $cause_rdv, "date" => $date));
 }
 
-function afficherQuestion(){
-    $db = dbConnect();
-    $req = $db->query('SELECT * FROM faq');
-    while ($donnees = $req->fetch()){
+function afficherQuestion()
+{
+    $req = DataBase::execute('SELECT * FROM FAQ');
+    while ($donnees = $req->fetch()) {
         ?>
-            <div class="question"> <?php $donnees['question'] ?> </div> : <br>
-            <div class="reponse"> <?php $donnees['reponse'] ?> </div> <br> <br>
-            <?php
+        <div class="question"> <?php echo $donnees['question'] ?> </div> <br>
+        <div class="reponse"> <?php echo $donnees['reponse'] ?> </div> <br> <br>
+        <?php
     }
-    $req->closeCursor();
-
 }

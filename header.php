@@ -1,9 +1,9 @@
 <?php
-include("phpRessources/fonctions.php");
+include_once("phpRessources/fonctions.php");
 define('URL', 'https://domolink.ddns.net/');
 session_start();
-if (empty($_SESSION['id']) && (!(strpos($_SERVER['REQUEST_URI'],"connexion.php"))&&!(strpos($_SERVER['REQUEST_URI'],"oublie.php")))) {
-    header("Location: connexion.php");
+if (empty($_SESSION['id']) && (!(strpos($_SERVER['REQUEST_URI'],"connexion.php"))&&!(strpos($_SERVER['REQUEST_URI'],"oublie.php"))&&!(strpos($_SERVER['REQUEST_URI'],"activation.php")))) {
+    header("Location: /connexion.php");
     die();
 } else {
     $req2 = Database::execute('SELECT nom,societe,telephone,slogan,adresse,mail,facebook,twitter,instagram FROM Administration', null);
@@ -20,7 +20,7 @@ if (empty($_SESSION['id']) && (!(strpos($_SERVER['REQUEST_URI'],"connexion.php")
         <div class="slogan"><br><em class="slogan compagnie"><?php echo $donneesAdmin['nom']; ?></em>
             : <?php echo $donneesAdmin['slogan']; ?></div>
     </div>
-    <?php if ($_SERVER['PHP_SELF'] != "/connexion.php"): ?>
+    <?php if ($_SERVER['PHP_SELF'] != "/connexion.php" && $_SERVER['PHP_SELF'] != "/oublie.php" && $_SERVER['PHP_SELF'] != "/activation.php"): ?>
         <div class="topMenu">
             <?php if ($_SESSION['type'] == 0): ?>
                 <div class="menuItem">

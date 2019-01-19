@@ -13,7 +13,7 @@ if (isset($_POST['connexion'])) {
     $nbre = Database::execute('SELECT id,type FROM Utilisateurs WHERE mail = :mail AND mdp = :mdp', array('mail' => $_POST['mail'], 'mdp' => hash('sha256', $_POST['mdp'])));
     $donnee = $nbre->fetch();
     $erreur = "";
-    if (isset($donnee)) //vérifier l'existance d'un email et du mot de passe correspondant
+    if (!empty($donnee)) //vérifier l'existance d'un email et du mot de passe correspondant
     {
         $_SESSION['id'] = $donnee['id'];
         $_SESSION['type'] = $donnee['type'];
@@ -28,10 +28,10 @@ if (isset($_POST['inscription'])) {
         $existeM = $testmail->fetch();
         $testcMAC = Database::execute('SELECT id,type FROM Utilisateurs WHERE cMAC = :cMAC', array('cMAC' => $_POST['cMAC']));
         $existeMAC = $testcMAC->fetch();
-        if ($existeM) {
+        if (!empty($existeM)) {
             $alreadyMail = 'Vous avez déjà un compte';
-        } else if ($existeMAC) {
-            $alreadycMAC = 'Vous avez déjà un compte';
+        } else if (!empty($existeMAC)) {
+            $alreadycMAC = 'Ce CeMAC est déjà utilisé.';
         } else if ($_POST['mdp'] !== $_POST['confirmation']) {
             $wrongmdp = 'les mots de passe ne correspondent pas, veuillez rééssayer';
         } else if (strlen($_POST['mdp']) < 7) {
@@ -60,7 +60,8 @@ if (isset($_POST['inscription'])) {
             <form method="post">
                 <h2> Connexion </h2>
                 <div>
-                    <?php if (isset($erreur)) {
+                    <?php
+                    if (isset($erreur)) {
                         echo $erreur;
                     } ?>
                 </div>

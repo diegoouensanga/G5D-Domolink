@@ -10,7 +10,7 @@
     <meta name="description" content="Le top de la maison Connectée !">
     <title>DomoLink</title>
 </head>
-<?php include("fonctions.php");
+<?php include_once("fonctions.php");
     $req = Database::execute('SELECT cgu,mentions_legales FROM Administration', null);
     $data = $req->fetch();
     $text = preg_replace("/\r\n|\r|\n/", '<br/>', $data[$_GET['data']]);

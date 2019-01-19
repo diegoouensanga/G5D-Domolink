@@ -17,10 +17,6 @@ $(document).ready(function () {
             data: {id: id, idCanva: canva.id, ownerType: type},
             dataType: 'json',
             success: function (data) {
-                let padding = 0;
-                if (data.title === "mensuelle") {
-                    padding = -15;
-                }
                 var ctx = document.getElementById(data.id).getContext('2d');
                 var chart = new Chart(ctx, {
                         type: data.type,
@@ -46,14 +42,6 @@ $(document).ready(function () {
                                         beginAtZero: true,
                                     }
                                 }],
-                            },
-                            layout: {
-                                padding: {
-                                    left: 0,
-                                    right: 0,
-                                    top: 0,
-                                    bottom: padding
-                                }
                             },
                             events: ['mousemove'],
                             tooltips: {
