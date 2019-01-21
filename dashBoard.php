@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; ">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self';">
     <link rel="shortcut icon" href="ressources/favicon.png"/>
     <link rel="stylesheet" href="css/cssGeneral.css">
     <link rel="stylesheet" href="css/dashBoard.css">
@@ -29,12 +29,14 @@
             echo "<a class='active' href='?piece=AjouterPiece'>+ Ajouter Pièce</a>";
         else
             echo "<a href='?piece=AjouterPiece'>+ Ajouter Pièce</a>";
+
+         echo "<a href='animaux.php?animal=GestionAnimaux'>Animaux</a>"
         ?>
     </nav>
     <?php if ($_GET['piece'] == 'VueGenerale') : ?>
         <div class='littleTitle'>Statistiques</div>
         <div class="statsWrapper">
-            <div class="divGraph">
+            <div id="divGraph"">
                 <canvas id="mensuelle"></canvas>
             </div>
             <div class="divGraph">
@@ -47,8 +49,7 @@
             </div>
         </div>
     <?php elseif ($_GET["piece"] == 'AjouterPiece') : ?>
-        <form autocomplete='off' class='title formPiece' action='/phpRessources/modifPiece.php' method='post'>Nom de la
-            pièce :<br><br>
+        <form autocomplete='off' class='title formPiece' action='modifPiece.php' method='post'>Nom de la pièce :<br><br>
             <input type='text' name='nomPiece' id="nomPiece" maxlength=15><br><br>
             <input class='button blueButton' id="pieceBut" type='submit' value='Ajouter'>
         </form>
@@ -64,58 +65,24 @@
         </div>
         <div class='littleTitle'>Capteurs</div>
         <div class='scrollbar' id='customScroll'>
-            <?php
-            $req = Database::execute("SELECT * FROM Equipement WHERE piece_id = :piece_id AND type = 'capteur'", Array('piece_id' => $_GET["piece"]));
-            while (isset($req) && $donnees = $req->fetch()) {
-                switch ($donnees['genre']) {
-                    case "Température":
-                        $class = "tempBox";
-                        $unite = "°";
-                        break;
-                    case "Humidité":
-                        $class = "humBox";
-                        $unite = "%";
-                        break;
-                }
-                echo "<div class='box {$class}'>
-                <div class='boxTitle'>{$donnees['genre']}</div>
-                <div class='boxInfo'>{$donnees['donnees']}{$unite}</div>
-                <a href='phpRessources/modifEquipement.php?idEq={$donnees['id']}&idPiece={$_GET['piece']}'> <div class='suppBox' id='{$donnees['id']}'>Supprimer</div></a>
-            </div>";
-            }
-            ?>
             <div class='box ajouterBox'></div>
+            <div class='box'></div>
+            <div class='box'></div>
+            <div class='box'></div>
+            <div class='box'></div>
+            <div class='box'></div>
         </div>
         <div class='littleTitle'>Actionneurs</div>
         <div class='scrollbar' id='customScroll'>
-            <?php
-            $req = Database::execute("SELECT * FROM Equipement WHERE piece_id = :piece_id AND type = 'actionneur'", Array('piece_id' => $_GET["piece"]));
-            while (isset($req) && $donnees = $req->fetch()) {
-                $checked ="";
-                switch ($donnees['genre']) {
-                    case "Alarme":
-                        $class = "alarmBox";
-                        break;
-                    case "Lumières":
-                        $class = "lumBox";
-                        break;
-                }
-                if ($donnees['actif']) $checked="checked";
-                echo "<div class='box {$class}'>
-                <div class='boxTitle'>{$donnees['genre']}</div>
-                <label class='switch actSwitch'>
-                    <input type='checkbox' {$checked}>
-                    <span class='slider round'></span>
-                </label>
-                <a href='phpRessources/modifEquipement.php?idEq={$donnees['id']}&idPiece={$_GET['piece']}'><div class='suppBox'>Supprimer</div></a>
-            </div>";
-            }
-            ?>
             <div class='box ajouterBox'></div>
+            <div class='box'></div>
+            <div class='box'></div>
+            <div class='box'></div>
+            <div class='box'></div>
+            <div class='box'></div>
         </div>
-        <form class='wrapDeleteButton' action='phpRessources/modifPiece.php?piece=<?php echo $_GET['piece']; ?>'
-              method='post'>
-            <input type='submit' class='button redButton' value='Supprimer la pièce' name='piece'><br>
+        <form class='wrapDeleteButton' action='modifPiece.php?piece=<?php echo $_GET['piece']; ?>' method='post'>
+            <input type='submit' class='button redButton' value='Supprimer la piece' name='piece'><br>
         </form>
 
     <?php endif; ?>
@@ -123,6 +90,5 @@
 <?php include("footer.php"); ?>
 <script src="libs/jquery-3.3.1.js"></script>
 <script src="libs/Chart.js"></script>
-<script data-my_var_1='<?php echo $_SESSION['id']; ?>' data-my_var_2='<?php echo $_GET['piece']; ?>'
-        src="javascript/dashBoard.js"></script>
+<script  data-my_var_1='<?php echo $_SESSION['id'] ;?>'  data-my_var_2='<?php echo $_GET['piece'] ;?>' src="javascript/dashBoard.js" ></script>
 

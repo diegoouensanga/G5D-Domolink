@@ -13,7 +13,7 @@ $(document).ready(function () {
     for (var i = 0, canva; canva = canvas[i++];) {
         $.ajax({
             type: 'post',
-            url: '../phpRessources/getGraphData.php',
+            url: '/phpRessources/getGraphData.php',
             data: {id: id, idCanva: canva.id, ownerType: type},
             dataType: 'json',
             success: function (data) {
@@ -23,7 +23,7 @@ $(document).ready(function () {
                         data: {
                             labels: data.labels,
                             datasets: [{
-                                label: "Consomation " + data.title,
+                                label: "Consommation " + data.title,
                                 data: data.datas,
                                 backgroundColor: 'rgba(0, 99, 227, 0.2)',
                                 borderColor: 'rgba(0, 99, 227,1)',

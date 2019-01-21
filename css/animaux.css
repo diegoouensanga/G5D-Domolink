@@ -15,19 +15,21 @@
     grid-column:4;
     grid-row:1;
 }
-.case5{
-    grid-column:4;
-    grid-row:1;
+.case5 {
+    grid-column: 4;
+    grid-row: 1;
 }
+.case4-6{
+    grid-column:4/6;
+    grid-row:3;
+}
+.case9-11{
+    grid-column:3/6;
+    grid-row:4;
+}
+
 .case7{
     grid-column:3;
     grid-row:2;
 }
-.case8{
-    grid-column:3;
-    grid-row:3;
-}
-.case9{
-    grid-column:3;
-    grid-row:4;
-}
+

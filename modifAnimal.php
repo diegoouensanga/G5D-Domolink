@@ -1,6 +1,8 @@
 <?php
 include("fonctions.php");
 session_start();
+
+// Pour ajouer un animal dans la base de données
 if (!empty($_POST['nomAnimal'])){
     $post =  htmlspecialchars($_POST['nomAnimal']);
     $req = Database::execute('INSERT INTO animaux(nom,id_utilisateur) VALUES(:nom,:id_utilisateur)',Array(
@@ -11,6 +13,8 @@ if (!empty($_POST['nomAnimal'])){
     $data = $reponse ->fetch();
     header("Location:/animaux.php?animal={$data['last_id']}");
 }
+
+// Pour supprimer un animal dans la base de données
 if (empty($_POST['nomAnimal'])){
     header("Location:/animaux.php?animal=GestionAnimaux");
     $id =  $_GET['animal'];

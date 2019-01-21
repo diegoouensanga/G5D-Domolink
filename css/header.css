@@ -3,10 +3,9 @@ html {
 }
 body {
     min-height: 100%;
-    height : 100%;
 }
 .contenu {
-    min-height: 73vh;
+    min-height:73vh;
     padding-bottom: 20px;
 }
 header
