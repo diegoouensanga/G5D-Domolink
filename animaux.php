@@ -56,15 +56,16 @@
     <!-- Onglet Gestion des animaux-->
 
     <?php if ($_GET['animal'] == 'GestionAnimaux') : ?>
-        <div class="case4-6">
+        <div class="case4-7">
             <h2>Bienvenue sur la rubrique de gestion des animaux</h2>
         </div>
-        <div class="case4-6">
+        <div class="case4-7">
             <br></br>
             <br></br>
             <h3> Vous trouverez ici les informations relatives au distributeur de nourriture </h3>
             <h3> et pourrez modifier ses fonctionnalités à votre guise</h3>
         </div>
+
         <!-- Onglet Ajouter un Animal-->
 
     <?php elseif ($_GET["animal"] == 'AjouterAnimal') : ?>
@@ -83,19 +84,23 @@
                 <img id="blah" src="ressources/icone-animal.png" alt="your image" width=200%>
             </form>
             <br></br>
+
             <form class='wrapDeleteButton' action='modifAnimal.php?animal=<?php echo $_GET['animal']; ?>' method='post'>
                 <input type='submit' class='button redButton' value="Supprimer la page de l'animal" name='deleteanimal'><br>
             </form>
 
         </div>
 
-        <div class='case3'>
+        <div class='case5-7'>
 
         <br></br>
 
-        <a class="button blueButton" name='ajoutenourriture' href='?nourriture=ModifierNourriture'>Ajouter une heure de
-            distribution de nourriture</a>
-        <br></br><br></br>
+        <form class='wrapDeleteButton' action='?nourriture=ModifierNourriture' method='post'>
+            <input type='submit' class='button blueButton' value="Ajouter une heure de distribution"
+                   name='ajoutheurenourriture'>
+        </form>
+
+        <br>
 
         <form class='wrapDeleteButton' action='?nourriture=DeleteNourriture' method='post'>
             <input type='submit' class='button blueButton' value="Réinitialiser les heures de distributions"
@@ -111,6 +116,8 @@
         <p>Aujourd'hui à 20h00</p>
         <h4>Repas programmés :</h4>
 
+        <!-- Affichage des repas programmés-->
+
         <?php
         $req = Database::execute('SELECT id,heure FROM dateheurenourriture WHERE id_utilisateur = :id_utilisateur', Array('id_utilisateur' => $_SESSION['id']));
         while (isset($req) && $donnees = $req->fetch()) {
@@ -119,10 +126,13 @@
         }
         ?>
 
+
+        <!-- Ajout d'une nouvelle heure de distribution -->
+
     <?php elseif ($_GET['nourriture'] == 'ModifierNourriture') : ?>
 
 
-        <form autocomplete='off' class='title formPiece' action='modifNourriture.php' method='post'>Distribution
+        <form autocomplete='off' class='title formPiece' action='modifNourriture.php' method='post'>Nouvelle distribution
             automatique à l'heure suivante : <br><br>
 
             <p>HH:MM:SS</p>
@@ -131,11 +141,11 @@
             <p>Exemple : 203000 pour 20:30:00</p>
             <input class='button blueButton' style="width:50%;" type='submit' value='Ajouter'>
         </form>
-
+        <!-- Suppression des heures programmées-->
     <?php elseif ($_GET['nourriture'] == 'DeleteNourriture') : ?>
 
-        <div class="case4-6"
-        <h2> L'heure de distribution a bien été supprimée.</h2>
+        <div class="case3-6"
+        <h2> Les heures de distributions ont bien été réinitialisées.</h2>
 
         <?php
         $req2 = Database:: execute('DELETE FROM dateheurenourriture ORDER BY id desc limit 1'); ?>

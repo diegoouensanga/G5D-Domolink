@@ -3,6 +3,7 @@ include("fonctions.php");
 session_start();
 
 
+// Ajout d'une heure de distribution de nourriture dans la BDD
 
 if (!empty($_POST['heureNourriture'])) {
     $post = htmlspecialchars($_POST['heureNourriture']);
@@ -15,15 +16,4 @@ if (!empty($_POST['heureNourriture'])) {
     $data = $reponse->fetch();
     header("Location:/animaux.php?animal={$data['last_id']}");
 
-    if (isset($_POST['deleteheurenourriture'])) {
-
-        echo 'delete';
-
-        header("Location:/animaux.php?animal=GestionAnimaux");
-
-        $req = Database::execute('DELETE FROM dateheurenourriture WHERE id = :id2 AND id_utilisateur = (SELECT MAX(id_utilisateur) FROM dateheurenourriture)', Array(
-            'id' => $id2,
-            'id_utilisateur' => $_SESSION['id']
-        ));
-    }
 }
