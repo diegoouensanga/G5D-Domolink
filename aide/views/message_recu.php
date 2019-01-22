@@ -34,7 +34,7 @@
             <table>
                 <thead>
                 <tr>
-                    <th>Destinataire</th>
+                    <th>Envoyeur</th>
                     <th>Objet</th>
                     <th>Message</th>
                     <th>Date</th>

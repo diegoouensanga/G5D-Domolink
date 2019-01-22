@@ -1,28 +1,22 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
-
     <!-- Import des fichiers CSS -->
     <link rel="shortcut icon" href="ressources/favicon.png"/>
     <link rel="stylesheet" href="css/cssGeneral.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/dashBoard.css">
-    <link rel="stylesheet" href="css/notificationV2.css">
     <link rel="stylesheet" href="css/animaux.css">
     <meta name="description" content="Le Top de la Maison Connectée !">
     <title>DomoLink</title>
-    <?php include("affichageimage.php"); ?>
 </head>
 <body>
 <?php include("header.php"); ?>
 <div class="wrapper">
     <nav class="menu"> <!-- Affichage du menu de navigation-->
-
         <!-- Bouton retour à l'accueil -->
         <?php
-        echo "<a href='dashBoard.php'>Retour à l'accueil</a>";
-        $req = Database::execute('SELECT id,nom FROM animaux WHERE id_utilisateur = :id_utilisateur', Array('id_utilisateur' => $_SESSION['id']));
+        echo "<a href='dashBoard.php?piece=VueGenerale'>Retour à l'accueil</a>";
+        $req = Database::execute('SELECT id,nom FROM Animaux WHERE id_utilisateur = :id_utilisateur', Array('id_utilisateur' => $_SESSION['id']));
 
         //Si on se trouve sur l'onglet Gestion des Animaux, affiche le bouton avec la police en rouge
 
@@ -33,7 +27,6 @@
 
         // Tant qu'il y a un animal dans la BDD, on affiche son bouton associé (en rouge si on est sur la page associée)
 
-
         while (isset($req) && $donnees = $req->fetch()) {
             if ($donnees['id'] == $_GET["animal"])
                 echo "<a class='active' href='?animal={$donnees['id']}'>{$donnees['nom']}</a>";
@@ -41,8 +34,6 @@
             else
                 echo "<a href='?animal={$donnees['id']}'>{$donnees['nom']}</a>";
         }
-
-
         //Si on se trouve sur l'onglet Ajouter Animal, affiche le bouton avec la police en rouge
 
         if (isset($_GET['animal']) && $_GET["animal"] == "AjouterAnimal")
@@ -58,35 +49,30 @@
     <?php if ($_GET['animal'] == 'GestionAnimaux') : ?>
         <div class="case4-7">
             <h2>Bienvenue sur la rubrique de gestion des animaux</h2>
-        </div>
-        <div class="case4-7">
-            <br></br>
-            <br></br>
-            <h3> Vous trouverez ici les informations relatives au distributeur de nourriture </h3>
-            <h3> et pourrez modifier ses fonctionnalités à votre guise</h3>
+            <h3> Vous trouverez ici les informations relatives au distributeur de nourriture et pourrez modifier ses fonctionnalités à votre guise</h3>
         </div>
 
         <!-- Onglet Ajouter un Animal-->
 
     <?php elseif ($_GET["animal"] == 'AjouterAnimal') : ?>
-        <form autocomplete='off' class='title formPiece' action='modifAnimal.php' method='post'>Nom de l'animal
-            :<br><br>
-            <input type='text' name='nomAnimal' style='width : 70%;' maxlength='15'><br><br>
-            <input class='button blueButton' style="width:50%;" type='submit' value='Ajouter'>
+
+        <form autocomplete='off' class='title formPiece ' action='phpRessources/modifAnimal.php' method='post'>Nom de l'animal :<br><br>
+            <input type='text' name='nomAnimal'  maxlength='15'><br><br>
+            <input class='button blueButton ajoutButton'  type='submit' value='Ajouter'>
         </form>
 
         <!-- Onglet des animaux-->
 
-    <?php elseif (isset($_GET['animal'])) : ?>
+    <?php elseif (!isset($_GET['nourriture'])) : ?>
         <div class='case1'>
 
-            <form id="form1" runat="server">
+            <form id="form1" >
                 <img id="blah" src="ressources/icone-animal.png" alt="your image" width=200%>
             </form>
             <br></br>
 
-            <form class='wrapDeleteButton' action='modifAnimal.php?animal=<?php echo $_GET['animal']; ?>' method='post'>
-                <input type='submit' class='button redButton' value="Supprimer la page de l'animal" name='deleteanimal'><br>
+            <form class='wrapDeleteButton' action='phpRessources/modifAnimal.php?animal=<?php echo $_GET['animal']?>' method='post'>
+                <input type='submit' class='button redButton animalButton' value="Supprimer la page de l'animal" name='deleteanimal'><br>
             </form>
 
         </div>
@@ -95,66 +81,55 @@
 
         <br></br>
 
-        <form class='wrapDeleteButton' action='?nourriture=ModifierNourriture' method='post'>
+        <form  action='?nourriture=ModifierNourriture&animal=<?php echo $_GET['animal']; ?>' method='post'>
             <input type='submit' class='button blueButton' value="Ajouter une heure de distribution"
                    name='ajoutheurenourriture'>
         </form>
 
         <br>
 
-        <form class='wrapDeleteButton' action='?nourriture=DeleteNourriture' method='post'>
+        <form  action='phpRessources/modifNourriture.php?animal=<?php echo $_GET['animal']; ?>' method='post'>
             <input type='submit' class='button blueButton' value="Réinitialiser les heures de distributions"
                    name='deleteheurenourriture'>
         </form>
 
 
-        <h4>Historique des derniers repas :</h4>
-        <p>Hier à 10h00</p>
-        <p>Hier à 20h00</p>
-
-        <p>Aujourd'hui à 10h00</p>
-        <p>Aujourd'hui à 20h00</p>
-        <h4>Repas programmés :</h4>
+        <h2>Repas programmés :</h2>
 
         <!-- Affichage des repas programmés-->
 
         <?php
-        $req = Database::execute('SELECT id,heure FROM dateheurenourriture WHERE id_utilisateur = :id_utilisateur', Array('id_utilisateur' => $_SESSION['id']));
+        $req = Database::execute('SELECT date FROM NourritureAnimaux WHERE animal_id = :animal_id', Array('animal_id' => $_GET['animal']));
         while (isset($req) && $donnees = $req->fetch()) {
-
-            echo "<p>Un repas sera distribué à {$donnees['heure']}.</p>";
+            date_default_timezone_set('Europe/Paris');
+            $date = date('H:i', strtotime($donnees['date']));
+            echo "<h3>Un repas sera distribué à {$date}.</h3>";
         }
         ?>
 
 
         <!-- Ajout d'une nouvelle heure de distribution -->
-
     <?php elseif ($_GET['nourriture'] == 'ModifierNourriture') : ?>
 
 
-        <form autocomplete='off' class='title formPiece' action='modifNourriture.php' method='post'>Nouvelle distribution
+        <form autocomplete='off' class='title formPiece' action="phpRessources/modifNourriture.php?animal=<?php echo $_GET['animal']; ?>" method='post'>Nouvelle distribution
             automatique à l'heure suivante : <br><br>
 
-            <p>HH:MM:SS</p>
-
-            <input type='text' name='heureNourriture' style='width : 70%;' maxlength='14'><br><br>
-            <p>Exemple : 203000 pour 20:30:00</p>
-            <input class='button blueButton' style="width:50%;" type='submit' value='Ajouter'>
+            <p>HH:MM</p>
+            <input type="time" class="time" name="heureNourriture" required><br><br>
+            <input class='button blueButton ajoutButton'  type='submit' value='Ajouter'>
         </form>
         <!-- Suppression des heures programmées-->
     <?php elseif ($_GET['nourriture'] == 'DeleteNourriture') : ?>
-
-        <div class="case3-6"
+        <div class="case3-6">
         <h2> Les heures de distributions ont bien été réinitialisées.</h2>
-
         <?php
-        $req2 = Database:: execute('DELETE FROM dateheurenourriture ORDER BY id desc limit 1'); ?>
+        $req2 = Database:: execute('DELETE FROM NourritureAnimaux WHERE animal_id =:animal_id',Array('animal_id'=>$_GET['animal'])); ?>
 
         </div>
     <?php endif; ?>
 
 </div>
-
 </div>
 <?php include("footer.php"); ?>
 </body>

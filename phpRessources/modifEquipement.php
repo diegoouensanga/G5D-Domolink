@@ -9,4 +9,13 @@ include_once("fonctions.php");
         header("Location: /dashBoard.php?piece=".$_GET['idPiece']);
         die();
 
+    } else if (isset($_POST['serieEqu'])){
+        $req = Database::execute('INSERT INTO Equipement(type,genre,donnees,actif,serial_number,piece_id) VALUES(:type,:genre,0,0,:serie,:piece_id)',Array(
+            'type' => $_POST['typeEqu'],
+            'genre' => $_POST['genreEqu'],
+            'serie' => $_POST['serieEqu'],
+            'piece_id' => $_GET['idPiece']
+        ));
+        header("Location: /dashBoard.php?piece=".$_GET['idPiece']);
+        die();
     }

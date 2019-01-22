@@ -1,3 +1,12 @@
+
+document.addEventListener('DOMContentLoaded', function () {
+    if (document.getElementById("serieEq")) {
+        document.getElementById("serieEq").oninput = function (){
+            checkNum(document.querySelector("#serieEq"));
+        }
+    }
+});
+
 $(document).ready(function () {
     var thisScript = $('script[src*=dashBoard]');
     let id = thisScript.attr('data-my_var_1');
@@ -13,7 +22,7 @@ $(document).ready(function () {
     for (var i = 0, canva; canva = canvas[i++];) {
         $.ajax({
             type: 'post',
-            url: '/phpRessources/getGraphData.php',
+            url: '../phpRessources/getGraphData.php',
             data: {id: id, idCanva: canva.id, ownerType: type},
             dataType: 'json',
             success: function (data) {
@@ -23,7 +32,7 @@ $(document).ready(function () {
                         data: {
                             labels: data.labels,
                             datasets: [{
-                                label: "Consommation " + data.title,
+                                label: "Consomation " + data.title,
                                 data: data.datas,
                                 backgroundColor: 'rgba(0, 99, 227, 0.2)',
                                 borderColor: 'rgba(0, 99, 227,1)',
@@ -63,5 +72,35 @@ $(document).ready(function () {
                 ;
             },
         });
+        $(".ajouterBox").children().hide();
+        $(".ajouterBox").css("visibility","visible");
     }
+
 });
+$(".ajouterBox").click(function(){
+    $(this).css("cursor", "default");
+    $(this).addClass("hide-bg");
+    $(this).children().fadeIn(500);
+});
+$(".cancelBox").click(function(e){
+    e.stopPropagation();
+    $(this).parent().children().fadeOut(200,function (){
+        $(this).parent().removeClass("hide-bg");
+        $(this).parent().css("cursor", "pointer");
+        $(this).parent().find(".errorEqu").text("");
+        $(this).parent().find("select").val("Type d'appareil");
+    });
+});
+$(".addBox").click(function(e){
+    e.stopPropagation();
+   if($(this).parent().find("select").val() == "Type d'appareil"){
+       $(this).parent().find(".errorEqu").text("Sélectionnez le type d'appareil.");
+   }
+   else if($(this).parent().find("input").val() == ""){
+        $(this).parent().find(".errorEqu").text("Entrez le numéro de série.");
+   } else {
+       $(this).parent().find("form").submit();
+   }
+});
+
+

@@ -37,9 +37,9 @@
             </label><br><br>
             <label>
                 Message : <br>
-                <input type="text" name="message" size="50" style="height:55px;" required>
+                <input type="text" name="message" size="50" required>
 
-            </label> <br>
+            </label> <br><br>
             <input type="submit" class='button ' VALUE="Envoyer">
 
 

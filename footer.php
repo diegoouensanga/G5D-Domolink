@@ -25,4 +25,4 @@
     </div>
 </footer>
 
-<script src="javascript/informationView.js"></script>
+<script src="/javascript/informationView.js"></script>

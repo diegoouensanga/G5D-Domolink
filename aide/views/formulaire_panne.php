@@ -28,7 +28,7 @@
             </label> <br> <br>
             <label>
                 Cause de la panne : <br>
-                <input type="text" name="message" size="50" style="height:55px;" required>
+                <input type="text" name="message" size="50" required>
 
             </label> <br> <br>
             <input type="submit" class="button" VALUE="Envoyer">

@@ -1,3 +1,42 @@
+select#selectEqu {
+    -webkit-appearance: button;
+    -webkit-border-radius: 4px;
+    -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #AAA;
+    color: #555;
+    white-space: nowrap;
+    background-color: white;
+    position: absolute;
+    top : 10px;
+    width : 140px;
+    left: 15px;
+}
+
+.serieEqu {
+    -webkit-appearance: button;
+    -webkit-border-radius: 4px;
+    -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #AAA;
+    color: #555;
+    background-color: white;
+    position: absolute;
+    top : 40px;
+    width : 136px;
+    left: 15px;
+    padding: 2px;
+}
+
+.errorEqu {
+    position: absolute;
+    font-size: 10px;
+    color : red;
+    top : 65px;
+    width : 136px;
+    left: 15px;
+    padding: 2px;
+}
+
+
 /* The switch - the box around the slider */
 .switch {
     position: relative;
@@ -24,7 +63,7 @@
     background-color: #dedede;
     -webkit-transition: .4s;
     transition: .4s;
-    border : 1px solid #999999;
+    border: 1px solid #999999;
 }
 
 .slider:before {
@@ -35,7 +74,7 @@
     left: 3px;
     bottom: 2px;
     background-color: white;
-    border : 1px solid #999999;
+    border: 1px solid #999999;
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -75,9 +114,9 @@ input:checked + .slider:before {
 }
 
 .wrapDeleteButton {
-    display : flex;
+    display: flex;
     grid-column: 3/7;
-    margin-left : auto;
+    margin-left: auto;
     margin-right: auto;
 }
 
@@ -87,9 +126,9 @@ input:checked + .slider:before {
 }
 
 .scrollbar .box {
-    position:relative;
+    position: relative;
     font-size: 30px;
-    border : 1px solid #999999;
+    border: 1px solid #999999;
     border-radius: 10px;
     width: 170px;
     height: 100px;
@@ -97,60 +136,103 @@ input:checked + .slider:before {
     margin-left: 18px;
     margin-right: 18px;
 }
+
 .boxTitle {
-    top : 10px;
-     position:absolute;
-     font-size: 20px;
-     color : white;
-     width : 100%;
-     text-align: center;
- }
-.boxInfo {
-    position:absolute;
-    font-size: 40px;
-    color : white;
-    top : 35px;
-    width : 100%;
+    top: 10px;
+    position: absolute;
+    font-size: 20px;
+    color: white;
+    width: 100%;
     text-align: center;
 }
+
+.boxInfo {
+    position: absolute;
+    font-size: 40px;
+    color: white;
+    top: 35px;
+    width: 100%;
+    text-align: center;
+}
+
 .suppBox {
-    margin : 0;
-    border : 1px solid #999999;
+    margin: 0;
+    border: 1px solid #999999;
     border-bottom-left-radius: 9px;
     border-bottom-right-radius: 9px;
-    position:absolute;
+    position: absolute;
     font-size: 12px;
-    color : red;
-    bottom : 0px;
-    width : calc(100% - 2px);
+    color: red;
+    bottom: 0px;
+    width: calc(100% - 2px);
     text-align: center;
     background-color: white;
     cursor: pointer;
 }
-.tempBox{
+
+.cancelBox {
+    margin: 0;
+    border: 1px solid #999999;
+    border-bottom-left-radius: 9px;
+    position: absolute;
+    font-size: 12px;
+    color: red;
+    bottom: 0px;
+    width: calc(50% - 1px);
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
+}
+
+.addBox {
+    margin: 0;
+    border: 1px solid #999999;
+    border-bottom-right-radius: 9px;
+    position: absolute;
+    font-size: 12px;
+    color: #2196F3;
+    bottom: 0px;
+    left : calc(50% - 1px);
+    width: calc(50% - 1px);
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
+}
+
+.tempBox {
     background-color: rgba(0, 191, 0, 0.7);
 }
-.alarmBox{
-    background-color: rgba(255,0,0,0.7);
+
+.alarmBox {
+    background-color: rgba(255, 0, 0, 0.7);
 }
-.lumBox{
+
+.lumBox {
     background-color: rgba(255, 200, 0, 0.7);
 }
-.actSwitch{
-    position:absolute;
+
+.actSwitch {
+    position: absolute;
     font-size: 40px;
-    color : white;
-    top : 40px;
+    color: white;
+    top: 40px;
     margin-left: 55px;
 }
-.humBox{
+
+.humBox {
     background-color: rgba(0, 112, 255, 0.7);
 }
+
 .ajouterBox {
     background-image: url(../ressources/fondAjouterAppareil.png);
     background-size: 170px 100px;
     background-color: #ffffff;
     cursor: pointer;
+    visibility: hidden;
+}
+
+.ajouterBox.hide-bg {
+    background-image: none;
 }
 
 .scrollbar {
@@ -169,19 +251,23 @@ input:checked + .slider:before {
 
 .littleTitle {
     font-family: "Comfortaa-Bold", serif;
-    color : #999999;
+    color: #999999;
     text-align: center;
-    grid-column: 3/7 ;
+    grid-column: 3/7;
 }
-#divGraphRoom{
-    width:100%;
+
+#divGraphRoom {
+    width: 100%;
 }
-.divGraph{
-    width:50%;
+
+.divGraph {
+    width: 50%;
 }
-#nomPiece{
-    width : 70%;
+
+#nomPiece {
+    width: 70%;
 }
-#pieceBut{
-    width:50%;
+
+#pieceBut {
+    width: 50%;
 }

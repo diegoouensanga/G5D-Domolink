@@ -1,6 +1,5 @@
 <?php
 include_once("phpRessources/fonctions.php");
-define('URL', 'https://domolink.ddns.net/');
 session_start();
 if (empty($_SESSION['id']) && (!(strpos($_SERVER['REQUEST_URI'],"connexion.php"))&&!(strpos($_SERVER['REQUEST_URI'],"oublie.php"))&&!(strpos($_SERVER['REQUEST_URI'],"activation.php")))) {
     header("Location: /connexion.php");
@@ -45,8 +44,8 @@ if (empty($_SESSION['id']) && (!(strpos($_SERVER['REQUEST_URI'],"connexion.php")
                 <a href="/compte.php?action=infos" class="caption">Compte</a>
             </div>
             <div class="menuItem">
-                <a href="aide/routers/router.php"><img draggable="false" src="/ressources/aide.png" alt="DomoLink" width=60%/></a>
-                <a href="aide/routers/router.php" class="caption">Aide</a>
+                <a href="/aide/routers/router.php"><img draggable="false" src="/ressources/aide.png" alt="DomoLink" width=60%/></a>
+                <a href="/aide/routers/router.php" class="caption">Aide</a>
             </div>
         </div>
     <?php endif; ?>

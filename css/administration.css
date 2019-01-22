@@ -41,6 +41,7 @@
 }
 
 .legalColumn textarea {
+    padding: 5px;
     resize: none;
     min-height: 300px;
 }

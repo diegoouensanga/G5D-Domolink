@@ -28,9 +28,9 @@ if (isset($_POST['mail'])) {
             <form method="post">
                 <br>
                 <h2> Veuillez écrire votre adresse email : </h2>
-                <input type="text" name="mail" size="40" id="uname" required style=" height : 5%;">
+                <input type="text" name="mail" size="40" id="uname" required>
                 </br></br>
-                <input class="button whiteButton" name="inscription" type="submit" style="size : 40px; height: 40px;"/>  </br>
+                <input class="button whiteButton" name="inscription" type="submit"/>  </br>
             </form>
         </div>
     </div>
