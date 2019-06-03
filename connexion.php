@@ -69,6 +69,7 @@ if (isset($_POST['inscription'])) {
                 <input class="champ" type="text" name="mail" required id="mailcon">
 
                 <h3> Mot de passe </h3>
+
                 <input class="champ" type="password" name="mdp" id="mdpcon" required> <br><br>
                 <input class="button conButton" name="connexion" type="submit" id="connexion" value="Connexion"/> <br>
                 <br>
@@ -109,6 +110,7 @@ if (isset($_POST['inscription'])) {
             <br>
 
             <h3> Mot de passe : </h3>
+            <h5> Le mot de passe doit contenir au moins 7 caractères comportant au moins une lettre, un chiffre et un caractère spécial ('#^!?=.*) </h5>
             <input class="champ" type="password" name="mdp" id="mdp" required><br>
             <div class="errorMsg">
                 <?php if (isset($noSize)) {

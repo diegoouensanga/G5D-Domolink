@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/cssGeneral.css">
     <link rel="stylesheet" href="css/dashBoard.css">
     <link rel="stylesheet" href="css/notificationsWidget.css">
-    <meta name="description" content="Le top de la maison Connectée !">
+    <meta name="description" content="Le top de la maison connectée !">
     <title>DomoLink</title>
 </head>
 <?php include("header.php"); ?>
@@ -73,6 +73,10 @@
                         $class = "tempBox";
                         $unite = "°";
                         break;
+                    case "Luminosité":
+                        $class = "luminoBox";
+                        $unite = "%";
+                        break;
                     case "Humidité":
                         $class = "humBox";
                         $unite = "%";
@@ -90,8 +94,9 @@
                       method='post'>
                     <select id="selectEqu" name="genreEqu">
                         <option>Type d'appareil</option>
-                        <option>Humidité</option>
+                        <option>Luminosité</option>
                         <option>Température</option>
+                        <option>Humidité</option>
                     </select>
                     <input type='text' placeholder="Numéro de série" class="serieEqu" name="serieEqu" id="serieEq"/>
                     <input type='hidden' name="typeEqu" value="capteur" />
